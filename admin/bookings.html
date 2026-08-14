@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Booking Management | Willuda Inn</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="assets/css/admin-common.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="assets/css/admin-bookings.css"
+    >
+</head>
+
+<body>
+
+    <div class="admin-layout">
+
+        <!-- SIDEBAR -->
+        <aside
+            class="admin-sidebar"
+            id="adminSidebar"
+        >
+
+            <div class="sidebar-brand">
+
+                <a href="admin-dashboard.html">
+
+                    <span class="brand-title">
+                        Willuda Admin
+                    </span>
+
+                    <span class="brand-subtitle">
+                        Management Portal
+                    </span>
+
+                </a>
+
+                <button
+                    type="button"
+                    class="sidebar-close-button"
+                    id="sidebarCloseButton"
+                    aria-label="Close sidebar"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+            <nav class="sidebar-navigation">
+
+                <a
+                    href="admin-dashboard.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-table-cells-large"></i>
+                    <span>Overview</span>
+                </a>
+
+                <a
+                    href="bookings.html"
+                    class="sidebar-link active"
+                >
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span>Bookings</span>
+                </a>
+
+                <a
+                    href="facilities.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-bed"></i>
+                    <span>Facilities</span>
+                </a>
+
+                <a
+                    href="customers.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-users"></i>
+                    <span>Customers</span>
+                </a>
+
+                <a
+                    href="reports.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-chart-column"></i>
+                    <span>Reports</span>
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <div class="system-status">
+                    <span class="status-dot"></span>
+                    System Status: Active
+                </div>
+
+                <a
+                    href="settings.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                </a>
+
+                <a
+                    href="../index.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Exit Admin</span>
+                </a>
+
+                <div class="admin-user-card">
+
+                    <div class="admin-avatar">
+                        <span>AU</span>
+                    </div>
+
+                    <div>
+                        <strong>Admin User</strong>
+                        <small>Manager Role</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+        <!-- MOBILE OVERLAY -->
+        <div
+            class="sidebar-overlay"
+            id="sidebarOverlay"
+        ></div>
+
+        <!-- MAIN CONTENT -->
+        <main class="admin-main">
+
+            <!-- TOP BAR -->
+            <header class="bookings-topbar">
+
+                <div class="topbar-left">
+
+                    <button
+                        type="button"
+                        class="sidebar-toggle-button"
+                        id="sidebarToggleButton"
+                        aria-label="Open sidebar"
+                    >
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+
+                    <div>
+
+                        <span class="page-label">
+                            Reservation Operations
+                        </span>
+
+                        <h1>Booking Management</h1>
+
+                        <p>
+                            Search, review and manage all hotel and event
+                            reservations.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="topbar-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="exportBookingsButton"
+                    >
+                        <i class="fa-solid fa-download"></i>
+                        Export
+                    </button>
+
+                    <button
+                        type="button"
+                        class="primary-button"
+                        id="addBookingButton"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        New Booking
+                    </button>
+
+                </div>
+
+            </header>
+
+            <!-- STATISTICS -->
+            <section class="booking-statistics">
+
+                <article class="booking-stat-card">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+
+                    <div>
+                        <span>Total Bookings</span>
+                        <strong id="totalBookingsCount">0</strong>
+                    </div>
+
+                </article>
+
+                <article class="booking-stat-card">
+
+                    <div class="stat-icon pending-icon">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+
+                    <div>
+                        <span>Pending</span>
+                        <strong id="pendingBookingsCount">0</strong>
+                    </div>
+
+                </article>
+
+                <article class="booking-stat-card">
+
+                    <div class="stat-icon confirmed-icon">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+
+                    <div>
+                        <span>Confirmed</span>
+                        <strong id="confirmedBookingsCount">0</strong>
+                    </div>
+
+                </article>
+
+                <article class="booking-stat-card">
+
+                    <div class="stat-icon cancelled-icon">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                    </div>
+
+                    <div>
+                        <span>Cancelled</span>
+                        <strong id="cancelledBookingsCount">0</strong>
+                    </div>
+
+                </article>
+
+            </section>
+
+            <!-- FILTER CARD -->
+            <section class="bookings-panel">
+
+                <div class="filter-toolbar">
+
+                    <div class="search-box">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            type="search"
+                            id="bookingSearch"
+                            placeholder="Search by guest, reference or facility..."
+                            aria-label="Search bookings"
+                        >
+
+                    </div>
+
+                    <select
+                        id="bookingStatusFilter"
+                        aria-label="Filter by booking status"
+                    >
+                        <option value="all">
+                            All Statuses
+                        </option>
+
+                        <option value="Pending">
+                            Pending
+                        </option>
+
+                        <option value="Confirmed">
+                            Confirmed
+                        </option>
+
+                        <option value="Completed">
+                            Completed
+                        </option>
+
+                        <option value="Cancelled">
+                            Cancelled
+                        </option>
+                    </select>
+
+                    <select
+                        id="bookingTypeFilter"
+                        aria-label="Filter by facility type"
+                    >
+                        <option value="all">
+                            All Facility Types
+                        </option>
+
+                        <option value="Room">
+                            Room
+                        </option>
+
+                        <option value="Hall">
+                            Hall
+                        </option>
+
+                        <option value="Event Space">
+                            Event Space
+                        </option>
+
+                        <option value="Restaurant">
+                            Restaurant
+                        </option>
+                    </select>
+
+                    <button
+                        type="button"
+                        class="clear-filter-button"
+                        id="clearBookingFilters"
+                    >
+                        <i class="fa-solid fa-rotate-left"></i>
+                        Clear
+                    </button>
+
+                </div>
+
+                <div class="table-heading">
+
+                    <div>
+                        <h2>All Bookings</h2>
+
+                        <p>
+                            Showing
+                            <strong id="bookingResultCount">0</strong>
+                            booking records
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="table-wrapper">
+
+                    <table class="booking-table">
+
+                        <thead>
+                            <tr>
+                                <th>Reference</th>
+                                <th>Guest</th>
+                                <th>Facility</th>
+                                <th>Stay Dates</th>
+                                <th>Guests</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="bookingTableBody"></tbody>
+
+                    </table>
+
+                </div>
+
+                <div
+                    class="empty-bookings"
+                    id="emptyBookings"
+                    hidden
+                >
+
+                    <div class="empty-icon">
+                        <i class="fa-regular fa-calendar-xmark"></i>
+                    </div>
+
+                    <h3>No Bookings Found</h3>
+
+                    <p id="emptyBookingMessage">
+                        No booking records are currently available.
+                    </p>
+
+                    <button
+                        type="button"
+                        class="primary-button"
+                        id="emptyAddBookingButton"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        Add Booking
+                    </button>
+
+                </div>
+
+            </section>
+
+            <footer class="admin-footer">
+
+                <p>
+                    © 2026 Willuda Inn Management Console.
+                </p>
+
+                <div>
+
+                    <span>
+                        <i class="fa-solid fa-circle"></i>
+                        Local Storage Synced
+                    </span>
+
+                    <span>
+                        <i class="fa-solid fa-circle"></i>
+                        Booking Module
+                    </span>
+
+                </div>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+    <!-- BOOKING DETAILS MODAL -->
+    <div
+        class="modal-overlay"
+        id="bookingDetailsModal"
+        hidden
+    >
+
+        <div
+            class="booking-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="bookingModalTitle"
+        >
+
+            <button
+                type="button"
+                class="modal-close-button"
+                id="closeBookingModal"
+                aria-label="Close booking details"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="modal-header">
+
+                <span class="modal-label">
+                    Booking Details
+                </span>
+
+                <h2 id="bookingModalTitle">
+                    Reservation
+                </h2>
+
+                <span
+                    class="modal-status"
+                    id="modalBookingStatus"
+                >
+                    Pending
+                </span>
+
+            </div>
+
+            <div class="booking-detail-grid">
+
+                <div>
+                    <span>Booking Reference</span>
+                    <strong id="modalBookingReference">-</strong>
+                </div>
+
+                <div>
+                    <span>Guest Name</span>
+                    <strong id="modalGuestName">-</strong>
+                </div>
+
+                <div>
+                    <span>Email Address</span>
+                    <strong id="modalGuestEmail">-</strong>
+                </div>
+
+                <div>
+                    <span>Phone Number</span>
+                    <strong id="modalGuestPhone">-</strong>
+                </div>
+
+                <div>
+                    <span>Facility</span>
+                    <strong id="modalFacilityName">-</strong>
+                </div>
+
+                <div>
+                    <span>Facility Type</span>
+                    <strong id="modalFacilityType">-</strong>
+                </div>
+
+                <div>
+                    <span>Check-in</span>
+                    <strong id="modalCheckIn">-</strong>
+                </div>
+
+                <div>
+                    <span>Check-out</span>
+                    <strong id="modalCheckOut">-</strong>
+                </div>
+
+                <div>
+                    <span>Guests</span>
+                    <strong id="modalGuestCount">-</strong>
+                </div>
+
+                <div>
+                    <span>Total Amount</span>
+                    <strong id="modalTotalAmount">-</strong>
+                </div>
+
+            </div>
+
+            <div class="special-request-box">
+
+                <span>Special Request</span>
+
+                <p id="modalSpecialRequest">
+                    No special request provided.
+                </p>
+
+            </div>
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="status-action-button confirm-action"
+                    id="confirmBookingButton"
+                >
+                    <i class="fa-solid fa-check"></i>
+                    Confirm
+                </button>
+
+                <button
+                    type="button"
+                    class="status-action-button complete-action"
+                    id="completeBookingButton"
+                >
+                    <i class="fa-solid fa-circle-check"></i>
+                    Complete
+                </button>
+
+                <button
+                    type="button"
+                    class="status-action-button cancel-action"
+                    id="cancelBookingButton"
+                >
+                    <i class="fa-solid fa-ban"></i>
+                    Cancel
+                </button>
+
+                <button
+                    type="button"
+                    class="status-action-button delete-action"
+                    id="deleteBookingButton"
+                >
+                    <i class="fa-solid fa-trash"></i>
+                    Delete
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ADD BOOKING MODAL -->
+    <div
+        class="modal-overlay"
+        id="addBookingModal"
+        hidden
+    >
+
+        <div
+            class="booking-modal add-booking-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="addBookingModalTitle"
+        >
+
+            <button
+                type="button"
+                class="modal-close-button"
+                id="closeAddBookingModal"
+                aria-label="Close add booking form"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="modal-header">
+
+                <span class="modal-label">
+                    New Reservation
+                </span>
+
+                <h2 id="addBookingModalTitle">
+                    Add Booking
+                </h2>
+
+                <p>
+                    Enter the guest and reservation information below.
+                </p>
+
+            </div>
+
+            <form
+                id="addBookingForm"
+                novalidate
+            >
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="newGuestName">
+                            Guest Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="newGuestName"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="newGuestEmail">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="newGuestEmail"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="newGuestPhone">
+                            Phone Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="newGuestPhone"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="newFacilityName">
+                            Facility
+                        </label>
+
+                        <input
+                            type="text"
+                            id="newFacilityName"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="newFacilityType">
+                            Facility Type
+                        </label>
+
+                        <select
+                            id="newFacilityType"
+                            required
+                        >
+                            <option value="">
+                                Select type
+                            </option>
+
+                            <option value="Room">
+                                Room
+                            </option>
+
+                            <option value="Hall">
+                                Hall
+                            </option>
+
+                            <option value="Event Space">
+                                Event Space
+                            </option>
+
+                            <option value="Restaurant">
+                                Restaurant
+                            </option>
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="newGuestCount">
+                            Guests
+                        </label>
+
+                        <input
+                            type="number"
+                            id="newGuestCount"
+                            min="1"
+                            value="1"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="newCheckIn">
+                            Check-in
+                        </label>
+
+                        <input
+                            type="date"
+                            id="newCheckIn"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="newCheckOut">
+                            Check-out
+                        </label>
+
+                        <input
+                            type="date"
+                            id="newCheckOut"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="form-group full-width">
+
+                        <label for="newTotalAmount">
+                            Total Amount
+                        </label>
+
+                        <input
+                            type="number"
+                            id="newTotalAmount"
+                            min="0"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="form-group full-width">
+
+                        <label for="newSpecialRequest">
+                            Special Request
+                        </label>
+
+                        <textarea
+                            id="newSpecialRequest"
+                            rows="4"
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+                <p
+                    class="form-message"
+                    id="addBookingMessage"
+                ></p>
+
+                <div class="modal-form-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="cancelAddBookingButton"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+                        <i class="fa-solid fa-floppy-disk"></i>
+                        Save Booking
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- TOAST -->
+    <div
+        class="admin-toast"
+        id="adminToast"
+        role="alert"
+        aria-live="polite"
+    ></div>
+
+<!-- Admin authentication protection -->
+<script src="assets/js/admin-auth.js"></script>
+
+<!-- Booking management functions -->
+<script src="assets/js/admin-bookings.js"></script>
+
+</body>
+</html>
+
+</body>
+</html>
+
+</body>
+</html>
+
+</body>
+
+</html>

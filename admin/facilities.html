@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Facility Management | Willuda Inn</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="assets/css/admin-common.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="assets/css/admin-facilities.css"
+    >
+</head>
+
+<body>
+
+    <div class="admin-layout">
+
+        <!-- SIDEBAR -->
+        <aside
+            class="admin-sidebar"
+            id="adminSidebar"
+        >
+
+            <div class="sidebar-brand">
+
+                <a href="admin-dashboard.html">
+
+                    <span class="brand-title">
+                        Willuda Admin
+                    </span>
+
+                    <span class="brand-subtitle">
+                        Management Portal
+                    </span>
+
+                </a>
+
+                <button
+                    type="button"
+                    class="sidebar-close-button"
+                    id="sidebarCloseButton"
+                    aria-label="Close sidebar"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+            <nav class="sidebar-navigation">
+
+                <a
+                    href="admin-dashboard.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-table-cells-large"></i>
+                    <span>Overview</span>
+                </a>
+
+                <a
+                    href="bookings.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span>Bookings</span>
+                </a>
+
+                <a
+                    href="facilities.html"
+                    class="sidebar-link active"
+                >
+                    <i class="fa-solid fa-bed"></i>
+                    <span>Facilities</span>
+                </a>
+
+                <a
+                    href="customers.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-users"></i>
+                    <span>Customers</span>
+                </a>
+
+                <a
+                    href="reports.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-chart-column"></i>
+                    <span>Reports</span>
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <div class="system-status">
+                    <span class="status-dot"></span>
+                    System Status: Active
+                </div>
+
+                <a
+                    href="settings.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                </a>
+
+                <a
+                    href="../index.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Exit Admin</span>
+                </a>
+
+                <div class="admin-user-card">
+
+                    <div class="admin-avatar">
+                        <span>AU</span>
+                    </div>
+
+                    <div>
+                        <strong>Admin User</strong>
+                        <small>Manager Role</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+        <div
+            class="sidebar-overlay"
+            id="sidebarOverlay"
+        ></div>
+
+        <!-- MAIN -->
+        <main class="admin-main">
+
+            <!-- TOP BAR -->
+            <header class="facilities-topbar">
+
+                <div class="topbar-left">
+
+                    <button
+                        type="button"
+                        class="sidebar-toggle-button"
+                        id="sidebarToggleButton"
+                        aria-label="Open sidebar"
+                    >
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+
+                    <div>
+
+                        <span class="page-label">
+                            Property Operations
+                        </span>
+
+                        <h1>Facility Management</h1>
+
+                        <p>
+                            Manage rooms, halls, event spaces and hotel amenities.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="primary-button"
+                    id="addFacilityButton"
+                >
+                    <i class="fa-solid fa-plus"></i>
+                    Add New Facility
+                </button>
+
+            </header>
+
+            <!-- STATISTICS -->
+            <section class="facility-statistics">
+
+                <article class="facility-stat-card">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-building"></i>
+                    </div>
+
+                    <div>
+                        <span>Total Facilities</span>
+                        <strong id="totalFacilitiesCount">0</strong>
+                    </div>
+
+                </article>
+
+                <article class="facility-stat-card">
+
+                    <div class="stat-icon available-icon">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+
+                    <div>
+                        <span>Available</span>
+                        <strong id="availableFacilitiesCount">0</strong>
+                    </div>
+
+                </article>
+
+                <article class="facility-stat-card">
+
+                    <div class="stat-icon booked-icon">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+
+                    <div>
+                        <span>Booked</span>
+                        <strong id="bookedFacilitiesCount">0</strong>
+                    </div>
+
+                </article>
+
+                <article class="facility-stat-card">
+
+                    <div class="stat-icon maintenance-icon">
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+                    </div>
+
+                    <div>
+                        <span>Maintenance</span>
+                        <strong id="maintenanceFacilitiesCount">0</strong>
+                    </div>
+
+                </article>
+
+            </section>
+
+            <!-- FACILITY PANEL -->
+            <section class="facilities-panel">
+
+                <div class="facility-filter-toolbar">
+
+                    <div class="search-box">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            type="search"
+                            id="facilitySearch"
+                            placeholder="Search by name, type or location..."
+                            aria-label="Search facilities"
+                        >
+
+                    </div>
+
+                    <select
+                        id="facilityTypeFilter"
+                        aria-label="Filter by facility type"
+                    >
+                        <option value="all">
+                            All Facility Types
+                        </option>
+
+                        <option value="Room">
+                            Room
+                        </option>
+
+                        <option value="Suite">
+                            Suite
+                        </option>
+
+                        <option value="Hall">
+                            Hall
+                        </option>
+
+                        <option value="Event Space">
+                            Event Space
+                        </option>
+
+                        <option value="Restaurant">
+                            Restaurant
+                        </option>
+
+                        <option value="Spa">
+                            Spa
+                        </option>
+                    </select>
+
+                    <select
+                        id="facilityStatusFilter"
+                        aria-label="Filter by facility status"
+                    >
+                        <option value="all">
+                            All Statuses
+                        </option>
+
+                        <option value="Available">
+                            Available
+                        </option>
+
+                        <option value="Booked">
+                            Booked
+                        </option>
+
+                        <option value="Maintenance">
+                            Maintenance
+                        </option>
+                    </select>
+
+                    <button
+                        type="button"
+                        class="clear-filter-button"
+                        id="clearFacilityFilters"
+                    >
+                        <i class="fa-solid fa-rotate-left"></i>
+                        Clear
+                    </button>
+
+                </div>
+
+                <div class="table-heading">
+
+                    <div>
+
+                        <h2>Facility Directory</h2>
+
+                        <p>
+                            Showing
+                            <strong id="facilityResultCount">0</strong>
+                            facility records
+                        </p>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="exportFacilitiesButton"
+                    >
+                        <i class="fa-solid fa-download"></i>
+                        Export
+                    </button>
+
+                </div>
+
+                <div class="table-wrapper">
+
+                    <table class="facility-table">
+
+                        <thead>
+                            <tr>
+                                <th>Facility</th>
+                                <th>Type</th>
+                                <th>Location</th>
+                                <th>Capacity</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="facilityTableBody"></tbody>
+
+                    </table>
+
+                </div>
+
+                <div
+                    class="empty-facilities"
+                    id="emptyFacilities"
+                    hidden
+                >
+
+                    <div class="empty-icon">
+                        <i class="fa-solid fa-building-circle-xmark"></i>
+                    </div>
+
+                    <h3>No Facilities Found</h3>
+
+                    <p id="emptyFacilityMessage">
+                        No facility records are currently available.
+                    </p>
+
+                    <button
+                        type="button"
+                        class="primary-button"
+                        id="emptyAddFacilityButton"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        Add Facility
+                    </button>
+
+                </div>
+
+            </section>
+
+            <footer class="admin-footer">
+
+                <p>
+                    © 2026 Willuda Inn Management Console.
+                </p>
+
+                <div>
+
+                    <span>
+                        <i class="fa-solid fa-circle"></i>
+                        Facility Data Synced
+                    </span>
+
+                    <span>
+                        <i class="fa-solid fa-circle"></i>
+                        Frontend Phase
+                    </span>
+
+                </div>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+    <!-- FACILITY DETAILS MODAL -->
+    <div
+        class="modal-overlay"
+        id="facilityDetailsModal"
+        hidden
+    >
+
+        <div
+            class="facility-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="facilityModalTitle"
+        >
+
+            <button
+                type="button"
+                class="modal-close-button"
+                id="closeFacilityModal"
+                aria-label="Close facility details"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="facility-modal-header">
+
+                <div class="modal-facility-icon">
+                    <i class="fa-solid fa-bed"></i>
+                </div>
+
+                <div>
+
+                    <span class="modal-label">
+                        Facility Details
+                    </span>
+
+                    <h2 id="facilityModalTitle">
+                        Facility Name
+                    </h2>
+
+                    <span
+                        class="modal-status"
+                        id="modalFacilityStatus"
+                    >
+                        Available
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="facility-detail-grid">
+
+                <div>
+                    <span>Facility ID</span>
+                    <strong id="modalFacilityId">-</strong>
+                </div>
+
+                <div>
+                    <span>Facility Type</span>
+                    <strong id="modalFacilityType">-</strong>
+                </div>
+
+                <div>
+                    <span>Location</span>
+                    <strong id="modalFacilityLocation">-</strong>
+                </div>
+
+                <div>
+                    <span>Capacity</span>
+                    <strong id="modalFacilityCapacity">-</strong>
+                </div>
+
+                <div>
+                    <span>Price</span>
+                    <strong id="modalFacilityPrice">-</strong>
+                </div>
+
+                <div>
+                    <span>Status</span>
+                    <strong id="modalFacilityStatusText">-</strong>
+                </div>
+
+            </div>
+
+            <div class="facility-description-box">
+
+                <span>Description</span>
+
+                <p id="modalFacilityDescription">
+                    No description available.
+                </p>
+
+            </div>
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="status-action-button edit-action"
+                    id="editFacilityButton"
+                >
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    Edit Facility
+                </button>
+
+                <button
+                    type="button"
+                    class="status-action-button available-action"
+                    id="markAvailableButton"
+                >
+                    <i class="fa-solid fa-circle-check"></i>
+                    Mark Available
+                </button>
+
+                <button
+                    type="button"
+                    class="status-action-button maintenance-action"
+                    id="markMaintenanceButton"
+                >
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                    Maintenance
+                </button>
+
+                <button
+                    type="button"
+                    class="status-action-button delete-action"
+                    id="deleteFacilityButton"
+                >
+                    <i class="fa-solid fa-trash"></i>
+                    Delete
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ADD / EDIT FACILITY MODAL -->
+    <div
+        class="modal-overlay"
+        id="facilityFormModal"
+        hidden
+    >
+
+        <div
+            class="facility-modal facility-form-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="facilityFormTitle"
+        >
+
+            <button
+                type="button"
+                class="modal-close-button"
+                id="closeFacilityFormModal"
+                aria-label="Close facility form"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="modal-header">
+
+                <span class="modal-label">
+                    Facility Form
+                </span>
+
+                <h2 id="facilityFormTitle">
+                    Add New Facility
+                </h2>
+
+                <p>
+                    Enter the facility information below.
+                </p>
+
+            </div>
+
+            <form
+                id="facilityForm"
+                novalidate
+            >
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="facilityNameInput">
+                            Facility Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="facilityNameInput"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="facilityTypeInput">
+                            Facility Type
+                        </label>
+
+                        <select
+                            id="facilityTypeInput"
+                            required
+                        >
+                            <option value="">
+                                Select type
+                            </option>
+
+                            <option value="Room">
+                                Room
+                            </option>
+
+                            <option value="Suite">
+                                Suite
+                            </option>
+
+                            <option value="Hall">
+                                Hall
+                            </option>
+
+                            <option value="Event Space">
+                                Event Space
+                            </option>
+
+                            <option value="Restaurant">
+                                Restaurant
+                            </option>
+
+                            <option value="Spa">
+                                Spa
+                            </option>
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="facilityLocationInput">
+                            Location
+                        </label>
+
+                        <input
+                            type="text"
+                            id="facilityLocationInput"
+                            placeholder="Example: West Wing, Floor 2"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="facilityCapacityInput">
+                            Capacity
+                        </label>
+
+                        <input
+                            type="number"
+                            id="facilityCapacityInput"
+                            min="1"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="facilityPriceInput">
+                            Price
+                        </label>
+
+                        <input
+                            type="number"
+                            id="facilityPriceInput"
+                            min="0"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="facilityStatusInput">
+                            Status
+                        </label>
+
+                        <select
+                            id="facilityStatusInput"
+                            required
+                        >
+                            <option value="Available">
+                                Available
+                            </option>
+
+                            <option value="Booked">
+                                Booked
+                            </option>
+
+                            <option value="Maintenance">
+                                Maintenance
+                            </option>
+                        </select>
+
+                    </div>
+
+                    <div class="form-group full-width">
+
+                        <label for="facilityDescriptionInput">
+                            Description
+                        </label>
+
+                        <textarea
+                            id="facilityDescriptionInput"
+                            rows="4"
+                            required
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+                <p
+                    class="form-message"
+                    id="facilityFormMessage"
+                ></p>
+
+                <div class="modal-form-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="cancelFacilityFormButton"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+                        <i class="fa-solid fa-floppy-disk"></i>
+                        Save Facility
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <div
+        class="admin-toast"
+        id="adminToast"
+        role="alert"
+        aria-live="polite"
+    ></div>
+
+<!-- Admin authentication protection -->
+<script src="assets/js/admin-auth.js"></script>
+
+<!-- Facility management functions -->
+<script src="assets/js/admin-facilities.js"></script>
+
+</body>
+</html>
+</body>
+
+</html>

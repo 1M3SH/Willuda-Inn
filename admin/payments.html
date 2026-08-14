@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Payment Management | Willuda Inn</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="assets/css/admin-common.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="assets/css/admin-payments.css"
+    >
+</head>
+
+<body>
+
+    <div class="admin-layout">
+
+        <!-- SIDEBAR -->
+        <aside
+            class="admin-sidebar"
+            id="adminSidebar"
+        >
+
+            <div class="sidebar-brand">
+
+                <a href="admin-dashboard.html">
+
+                    <span class="brand-title">
+                        Willuda Admin
+                    </span>
+
+                    <span class="brand-subtitle">
+                        Management Portal
+                    </span>
+
+                </a>
+
+                <button
+                    type="button"
+                    class="sidebar-close-button"
+                    id="sidebarCloseButton"
+                    aria-label="Close sidebar"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+            <nav class="sidebar-navigation">
+
+                <a
+                    href="admin-dashboard.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-table-cells-large"></i>
+                    <span>Overview</span>
+                </a>
+
+                <a
+                    href="bookings.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span>Bookings</span>
+                </a>
+
+                <a
+                    href="events.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-champagne-glasses"></i>
+                    <span>Events</span>
+                </a>
+
+                <a
+                    href="facilities.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-bed"></i>
+                    <span>Facilities</span>
+                </a>
+
+                <a
+                    href="customers.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-users"></i>
+                    <span>Customers</span>
+                </a>
+
+                <a
+                    href="payments.html"
+                    class="sidebar-link active"
+                >
+                    <i class="fa-solid fa-credit-card"></i>
+                    <span>Payments</span>
+                </a>
+
+                <a
+                    href="reports.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-chart-column"></i>
+                    <span>Reports</span>
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <div class="system-status">
+                    <span class="status-dot"></span>
+                    System Status: Active
+                </div>
+
+                <a
+                    href="settings.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                </a>
+
+                <a
+                    href="../index.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Exit Admin</span>
+                </a>
+
+                <div class="admin-user-card">
+
+                    <div class="admin-avatar">
+                        <span>PA</span>
+                    </div>
+
+                    <div>
+                        <strong>Prabhath Akalanka</strong>
+                        <small>Administrator</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+        <div
+            class="sidebar-overlay"
+            id="sidebarOverlay"
+        ></div>
+
+        <!-- MAIN -->
+        <main class="admin-main">
+
+            <!-- TOP BAR -->
+            <header class="payments-topbar">
+
+                <div class="topbar-left">
+
+                    <button
+                        type="button"
+                        class="sidebar-toggle-button"
+                        id="sidebarToggleButton"
+                        aria-label="Open sidebar"
+                    >
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+
+                    <div>
+
+                        <span class="page-label">
+                            Financial Operations
+                        </span>
+
+                        <h1>Payment Management</h1>
+
+                        <p>
+                            Review, record and manage booking payment
+                            transactions.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="topbar-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="exportPaymentsButton"
+                    >
+                        <i class="fa-solid fa-download"></i>
+                        Export
+                    </button>
+
+                    <button
+                        type="button"
+                        class="primary-button"
+                        id="addPaymentButton"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        New Payment
+                    </button>
+
+                </div>
+
+            </header>
+
+            <!-- STATISTICS -->
+            <section class="payment-statistics">
+
+                <article class="payment-stat-card">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-receipt"></i>
+                    </div>
+
+                    <div>
+                        <span>Total Payments</span>
+                        <strong id="totalPaymentsCount">0</strong>
+                    </div>
+
+                </article>
+
+                <article class="payment-stat-card">
+
+                    <div class="stat-icon paid-icon">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+
+                    <div>
+                        <span>Paid</span>
+                        <strong id="paidPaymentsCount">0</strong>
+                    </div>
+
+                </article>
+
+                <article class="payment-stat-card">
+
+                    <div class="stat-icon pending-icon">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+
+                    <div>
+                        <span>Pending / Partial</span>
+                        <strong id="pendingPaymentsCount">0</strong>
+                    </div>
+
+                </article>
+
+                <article class="payment-stat-card">
+
+                    <div class="stat-icon revenue-icon">
+                        <i class="fa-solid fa-money-bill-wave"></i>
+                    </div>
+
+                    <div>
+                        <span>Total Collected</span>
+                        <strong id="totalCollectedAmount">LKR 0</strong>
+                    </div>
+
+                </article>
+
+            </section>
+
+            <!-- PAYMENT PANEL -->
+            <section class="payments-panel">
+
+                <div class="payment-filter-toolbar">
+
+                    <div class="search-box">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            type="search"
+                            id="paymentSearch"
+                            placeholder="Search by transaction, customer or booking..."
+                            aria-label="Search payments"
+                        >
+
+                    </div>
+
+                    <select
+                        id="paymentStatusFilter"
+                        aria-label="Filter by payment status"
+                    >
+                        <option value="all">
+                            All Statuses
+                        </option>
+
+                        <option value="Pending">
+                            Pending
+                        </option>
+
+                        <option value="Partial">
+                            Partial
+                        </option>
+
+                        <option value="Paid">
+                            Paid
+                        </option>
+
+                        <option value="Refunded">
+                            Refunded
+                        </option>
+
+                        <option value="Failed">
+                            Failed
+                        </option>
+                    </select>
+
+                    <select
+                        id="paymentMethodFilter"
+                        aria-label="Filter by payment method"
+                    >
+                        <option value="all">
+                            All Methods
+                        </option>
+
+                        <option value="Cash">
+                            Cash
+                        </option>
+
+                        <option value="Credit Card">
+                            Credit Card
+                        </option>
+
+                        <option value="Debit Card">
+                            Debit Card
+                        </option>
+
+                        <option value="Bank Transfer">
+                            Bank Transfer
+                        </option>
+
+                        <option value="Online Payment">
+                            Online Payment
+                        </option>
+                    </select>
+
+                    <button
+                        type="button"
+                        class="clear-filter-button"
+                        id="clearPaymentFilters"
+                    >
+                        <i class="fa-solid fa-rotate-left"></i>
+                        Clear
+                    </button>
+
+                </div>
+
+                <div class="table-heading">
+
+                    <div>
+
+                        <h2>Payment Transactions</h2>
+
+                        <p>
+                            Showing
+                            <strong id="paymentResultCount">0</strong>
+                            payment records
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="table-wrapper">
+
+                    <table class="payment-table">
+
+                        <thead>
+
+                            <tr>
+                                <th>Transaction</th>
+                                <th>Customer</th>
+                                <th>Booking</th>
+                                <th>Amount</th>
+                                <th>Method</th>
+                                <th>Payment Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="paymentTableBody"></tbody>
+
+                    </table>
+
+                </div>
+
+                <div
+                    class="empty-payments"
+                    id="emptyPayments"
+                    hidden
+                >
+
+                    <div class="empty-icon">
+                        <i class="fa-solid fa-receipt"></i>
+                    </div>
+
+                    <h3>No Payments Found</h3>
+
+                    <p id="emptyPaymentMessage">
+                        No payment records are currently available.
+                    </p>
+
+                    <button
+                        type="button"
+                        class="primary-button"
+                        id="emptyAddPaymentButton"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        Add Payment
+                    </button>
+
+                </div>
+
+            </section>
+
+            <footer class="admin-footer">
+
+                <p>
+                    © 2026 Willuda Inn Management Console.
+                </p>
+
+                <div>
+
+                    <span>
+                        <i class="fa-solid fa-circle"></i>
+                        Payment Data Synced
+                    </span>
+
+                    <span>
+                        <i class="fa-solid fa-circle"></i>
+                        MySQL Backend
+                    </span>
+
+                </div>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+    <!-- PAYMENT DETAILS MODAL -->
+    <div
+        class="modal-overlay"
+        id="paymentDetailsModal"
+        hidden
+    >
+
+        <div
+            class="payment-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="paymentDetailsTitle"
+        >
+
+            <button
+                type="button"
+                class="modal-close-button"
+                id="closePaymentDetailsModal"
+                aria-label="Close payment details"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="payment-modal-header">
+
+                <div class="modal-icon">
+                    <i class="fa-solid fa-receipt"></i>
+                </div>
+
+                <div>
+
+                    <span class="modal-label">
+                        Payment Details
+                    </span>
+
+                    <h2 id="paymentDetailsTitle">
+                        Transaction
+                    </h2>
+
+                    <span
+                        class="modal-status"
+                        id="detailsPaymentStatus"
+                    >
+                        Pending
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="payment-detail-grid">
+
+                <div>
+                    <span>Transaction Reference</span>
+                    <strong id="detailsTransactionReference">-</strong>
+                </div>
+
+                <div>
+                    <span>Payment Amount</span>
+                    <strong id="detailsPaymentAmount">LKR 0</strong>
+                </div>
+
+                <div>
+                    <span>Customer</span>
+                    <strong id="detailsCustomerName">-</strong>
+                </div>
+
+                <div>
+                    <span>Customer Email</span>
+                    <strong id="detailsCustomerEmail">-</strong>
+                </div>
+
+                <div>
+                    <span>Booking</span>
+                    <strong id="detailsBookingName">-</strong>
+                </div>
+
+                <div>
+                    <span>Booking Stay</span>
+                    <strong id="detailsBookingDates">-</strong>
+                </div>
+
+                <div>
+                    <span>Payment Method</span>
+                    <strong id="detailsPaymentMethod">-</strong>
+                </div>
+
+                <div>
+                    <span>Payment Date</span>
+                    <strong id="detailsPaymentDate">-</strong>
+                </div>
+
+            </div>
+
+            <div class="notes-box">
+
+                <span>Notes</span>
+
+                <p id="detailsPaymentNotes">
+                    No notes provided.
+                </p>
+
+            </div>
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="status-action-button edit-action"
+                    id="editSelectedPaymentButton"
+                >
+                    <i class="fa-solid fa-pen"></i>
+                    Edit
+                </button>
+
+                <button
+                    type="button"
+                    class="status-action-button paid-action"
+                    id="markPaymentPaidButton"
+                >
+                    <i class="fa-solid fa-check"></i>
+                    Mark Paid
+                </button>
+
+                <button
+                    type="button"
+                    class="status-action-button refund-action"
+                    id="markPaymentRefundedButton"
+                >
+                    <i class="fa-solid fa-rotate-left"></i>
+                    Refund
+                </button>
+
+                <button
+                    type="button"
+                    class="status-action-button delete-action"
+                    id="deleteSelectedPaymentButton"
+                >
+                    <i class="fa-solid fa-trash"></i>
+                    Delete
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ADD / EDIT PAYMENT MODAL -->
+    <div
+        class="modal-overlay"
+        id="paymentFormModal"
+        hidden
+    >
+
+        <div
+            class="payment-modal payment-form-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="paymentFormTitle"
+        >
+
+            <button
+                type="button"
+                class="modal-close-button"
+                id="closePaymentFormModal"
+                aria-label="Close payment form"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="modal-header">
+
+                <span class="modal-label">
+                    Payment Record
+                </span>
+
+                <h2 id="paymentFormTitle">
+                    Add Payment
+                </h2>
+
+                <p>
+                    Enter the payment transaction information below.
+                </p>
+
+            </div>
+
+            <form
+                id="paymentForm"
+                novalidate
+            >
+
+                <input
+                    type="hidden"
+                    id="paymentId"
+                >
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="paymentBooking">
+                            Booking
+                        </label>
+
+                        <select id="paymentBooking">
+                            <option value="">
+                                Select booking
+                            </option>
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="paymentCustomer">
+                            Customer
+                        </label>
+
+                        <select id="paymentCustomer">
+                            <option value="">
+                                Select customer
+                            </option>
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="paymentAmount">
+                            Amount (LKR)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="paymentAmount"
+                            min="0"
+                            step="0.01"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="paymentMethod">
+                            Payment Method
+                        </label>
+
+                        <select
+                            id="paymentMethod"
+                            required
+                        >
+                            <option value="">
+                                Select method
+                            </option>
+
+                            <option value="Cash">
+                                Cash
+                            </option>
+
+                            <option value="Credit Card">
+                                Credit Card
+                            </option>
+
+                            <option value="Debit Card">
+                                Debit Card
+                            </option>
+
+                            <option value="Bank Transfer">
+                                Bank Transfer
+                            </option>
+
+                            <option value="Online Payment">
+                                Online Payment
+                            </option>
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="paymentStatus">
+                            Payment Status
+                        </label>
+
+                        <select
+                            id="paymentStatus"
+                            required
+                        >
+                            <option value="Pending">
+                                Pending
+                            </option>
+
+                            <option value="Partial">
+                                Partial
+                            </option>
+
+                            <option value="Paid">
+                                Paid
+                            </option>
+
+                            <option value="Refunded">
+                                Refunded
+                            </option>
+
+                            <option value="Failed">
+                                Failed
+                            </option>
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="paymentDate">
+                            Payment Date
+                        </label>
+
+                        <input
+                            type="datetime-local"
+                            id="paymentDate"
+                        >
+
+                    </div>
+
+                    <div class="form-group full-width">
+
+                        <label for="transactionReference">
+                            Transaction Reference
+                        </label>
+
+                        <input
+                            type="text"
+                            id="transactionReference"
+                            placeholder="Automatically generated when empty"
+                        >
+
+                    </div>
+
+                    <div class="form-group full-width">
+
+                        <label for="paymentNotes">
+                            Notes
+                        </label>
+
+                        <textarea
+                            id="paymentNotes"
+                            rows="4"
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+                <p
+                    class="form-message"
+                    id="paymentFormMessage"
+                ></p>
+
+                <div class="modal-form-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="cancelPaymentFormButton"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                        id="savePaymentButton"
+                    >
+                        <i class="fa-solid fa-floppy-disk"></i>
+                        Save Payment
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <div
+        class="admin-toast"
+        id="adminToast"
+        role="alert"
+        aria-live="polite"
+    ></div>
+
+    <script src="assets/js/admin-payments.js"></script>
+
+</body>
+
+</html>

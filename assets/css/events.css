@@ -1,0 +1,232 @@
+/* ==========================================
+   RESET
+========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #111b31;
+    --secondary: #a27b22;
+    --white: #ffffff;
+    --light: #f5f5f5;
+    --gray: #666666;
+    --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: var(--white);
+    line-height: 1.6;
+}
+
+img {
+    width: 100%;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.events-header {
+    height: 550px;
+    color: white;
+    background:
+        linear-gradient(
+            rgba(17, 27, 49, 0.8),
+            rgba(17, 27, 49, 0.8)
+        ),
+        url("../images/event-banner.jpg");
+
+    background-size: cover;
+    background-position: center;
+}
+
+/* ==========================================
+   NAVBAR
+========================================== */
+
+.navbar {
+    width: 90%;
+    margin: auto;
+    padding: 25px 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: white;
+    font-size: 35px;
+    font-weight: 700;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: white;
+    transition: 0.3s;
+}
+
+.nav-links a:hover,
+.active {
+    color: var(--secondary);
+}
+
+/* ==========================================
+   HERO SECTION
+========================================== */
+
+.hero-content {
+    width: 90%;
+    margin: 120px auto;
+}
+
+.hero-content span {
+    letter-spacing: 3px;
+    color: var(--secondary);
+}
+
+.hero-content h1 {
+    margin-top: 20px;
+    font-size: 60px;
+}
+
+.hero-content p {
+    margin-top: 20px;
+    max-width: 600px;
+}
+
+/* ==========================================
+   EVENT SECTION
+========================================== */
+
+.event-section {
+    width: 90%;
+    margin: 100px auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.event-card {
+    overflow: hidden;
+    border-radius: 15px;
+    background-color: white;
+    box-shadow: var(--shadow);
+    transition: 0.3s;
+}
+
+.event-card:hover {
+    transform: translateY(-10px);
+}
+
+.event-card img {
+    height: 250px;
+    object-fit: cover;
+}
+
+.event-card h3 {
+    margin: 20px;
+    color: var(--primary);
+}
+
+.event-card p {
+    margin: 0 20px 25px;
+    color: var(--gray);
+}
+
+/* ==========================================
+   PACKAGE SECTION
+========================================== */
+
+.package-section {
+    width: 90%;
+    margin: auto auto 100px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.package-section h2 {
+    grid-column: 1 / -1;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.package-card {
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    background-color: white;
+    box-shadow: var(--shadow);
+    transition: 0.3s;
+}
+
+.package-card:hover {
+    transform: scale(1.05);
+}
+
+.package-card h3 {
+    color: var(--primary);
+}
+
+.package-card p {
+    margin-top: 15px;
+    color: var(--secondary);
+    font-size: 25px;
+    font-weight: bold;
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+footer {
+    padding: 30px;
+    color: white;
+    text-align: center;
+    background-color: var(--primary);
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN
+========================================== */
+
+@media (max-width: 992px) {
+
+    .event-section,
+    .package-section {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-content h1 {
+        font-size: 45px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .navbar {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .hero-content h1 {
+        font-size: 35px;
+    }
+}

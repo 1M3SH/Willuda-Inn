@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Event Management | Willuda Inn</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="assets/css/admin-common.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="assets/css/admin-events.css"
+    >
+</head>
+
+<body>
+
+    <div class="admin-layout">
+
+        <!-- SIDEBAR -->
+        <aside
+            class="admin-sidebar"
+            id="adminSidebar"
+        >
+
+            <div class="sidebar-brand">
+
+                <a href="admin-dashboard.html">
+
+                    <span class="brand-title">
+                        Willuda Admin
+                    </span>
+
+                    <span class="brand-subtitle">
+                        Management Portal
+                    </span>
+
+                </a>
+
+                <button
+                    type="button"
+                    class="sidebar-close-button"
+                    id="sidebarCloseButton"
+                    aria-label="Close sidebar"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+            <nav class="sidebar-navigation">
+
+                <a
+                    href="admin-dashboard.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-table-cells-large"></i>
+                    <span>Overview</span>
+                </a>
+
+                <a
+                    href="bookings.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span>Bookings</span>
+                </a>
+
+                <a
+                    href="events.html"
+                    class="sidebar-link active"
+                >
+                    <i class="fa-solid fa-champagne-glasses"></i>
+                    <span>Events</span>
+                </a>
+
+                <a
+                    href="facilities.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-bed"></i>
+                    <span>Facilities</span>
+                </a>
+
+                <a
+                    href="customers.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-users"></i>
+                    <span>Customers</span>
+                </a>
+
+                <a
+                    href="reports.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-chart-column"></i>
+                    <span>Reports</span>
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <div class="system-status">
+                    <span class="status-dot"></span>
+                    System Status: Active
+                </div>
+
+                <a
+                    href="settings.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                </a>
+
+                <a
+                    href="../index.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Exit Admin</span>
+                </a>
+
+                <div class="admin-user-card">
+
+                    <div class="admin-avatar">
+                        <span>PA</span>
+                    </div>
+
+                    <div>
+                        <strong>Prabhath Akalanka</strong>
+                        <small>Administrator</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+        <!-- MOBILE OVERLAY -->
+        <div
+            class="sidebar-overlay"
+            id="sidebarOverlay"
+        ></div>
+
+        <!-- MAIN -->
+        <main class="admin-main">
+
+            <!-- TOP BAR -->
+            <header class="events-topbar">
+
+                <div class="topbar-left">
+
+                    <button
+                        type="button"
+                        class="sidebar-toggle-button"
+                        id="sidebarToggleButton"
+                        aria-label="Open sidebar"
+                    >
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+
+                    <div>
+
+                        <span class="page-label">
+                            Event Operations
+                        </span>
+
+                        <h1>Event Management</h1>
+
+                        <p>
+                            Create, review and manage weddings, conferences,
+                            celebrations and other hotel events.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="topbar-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="exportEventsButton"
+                    >
+                        <i class="fa-solid fa-download"></i>
+                        Export
+                    </button>
+
+                    <button
+                        type="button"
+                        class="primary-button"
+                        id="addEventButton"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        New Event
+                    </button>
+
+                </div>
+
+            </header>
+
+            <!-- STATISTICS -->
+            <section class="event-statistics">
+
+                <article class="event-stat-card">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-calendar-days"></i>
+                    </div>
+
+                    <div>
+                        <span>Total Events</span>
+                        <strong id="totalEventsCount">0</strong>
+                    </div>
+
+                </article>
+
+                <article class="event-stat-card">
+
+                    <div class="stat-icon planned-icon">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+
+                    <div>
+                        <span>Planned</span>
+                        <strong id="plannedEventsCount">0</strong>
+                    </div>
+
+                </article>
+
+                <article class="event-stat-card">
+
+                    <div class="stat-icon confirmed-icon">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+
+                    <div>
+                        <span>Confirmed</span>
+                        <strong id="confirmedEventsCount">0</strong>
+                    </div>
+
+                </article>
+
+                <article class="event-stat-card">
+
+                    <div class="stat-icon completed-icon">
+                        <i class="fa-solid fa-flag-checkered"></i>
+                    </div>
+
+                    <div>
+                        <span>Completed</span>
+                        <strong id="completedEventsCount">0</strong>
+                    </div>
+
+                </article>
+
+            </section>
+
+            <!-- EVENTS PANEL -->
+            <section class="events-panel">
+
+                <div class="event-filter-toolbar">
+
+                    <div class="search-box">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            type="search"
+                            id="eventSearch"
+                            placeholder="Search event, customer or facility..."
+                            aria-label="Search events"
+                        >
+
+                    </div>
+
+                    <select
+                        id="eventTypeFilter"
+                        aria-label="Filter by event type"
+                    >
+                        <option value="all">
+                            All Event Types
+                        </option>
+                    </select>
+
+                    <select
+                        id="eventStatusFilter"
+                        aria-label="Filter by event status"
+                    >
+                        <option value="all">
+                            All Statuses
+                        </option>
+
+                        <option value="Planned">
+                            Planned
+                        </option>
+
+                        <option value="Confirmed">
+                            Confirmed
+                        </option>
+
+                        <option value="Completed">
+                            Completed
+                        </option>
+
+                        <option value="Cancelled">
+                            Cancelled
+                        </option>
+                    </select>
+
+                    <button
+                        type="button"
+                        class="clear-filter-button"
+                        id="clearEventFilters"
+                    >
+                        <i class="fa-solid fa-rotate-left"></i>
+                        Clear
+                    </button>
+
+                </div>
+
+                <div class="table-heading">
+
+                    <div>
+
+                        <h2>All Events</h2>
+
+                        <p>
+                            Showing
+                            <strong id="eventResultCount">0</strong>
+                            event records
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="table-wrapper">
+
+                    <table class="event-table">
+
+                        <thead>
+
+                            <tr>
+                                <th>Event</th>
+                                <th>Customer</th>
+                                <th>Facility</th>
+                                <th>Date & Time</th>
+                                <th>Guests</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="eventTableBody"></tbody>
+
+                    </table>
+
+                </div>
+
+                <div
+                    class="empty-events"
+                    id="emptyEvents"
+                    hidden
+                >
+
+                    <div class="empty-icon">
+                        <i class="fa-regular fa-calendar-xmark"></i>
+                    </div>
+
+                    <h3>No Events Found</h3>
+
+                    <p id="emptyEventMessage">
+                        No event records are currently available.
+                    </p>
+
+                    <button
+                        type="button"
+                        class="primary-button"
+                        id="emptyAddEventButton"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        Add Event
+                    </button>
+
+                </div>
+
+            </section>
+
+            <footer class="admin-footer">
+
+                <p>
+                    © 2026 Willuda Inn Management Console.
+                </p>
+
+                <div>
+
+                    <span>
+                        <i class="fa-solid fa-circle"></i>
+                        MySQL Events Synced
+                    </span>
+
+                    <span>
+                        <i class="fa-solid fa-circle"></i>
+                        Event Module
+                    </span>
+
+                </div>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+    <!-- EVENT DETAILS MODAL -->
+    <div
+        class="modal-overlay"
+        id="eventDetailsModal"
+        hidden
+    >
+
+        <div
+            class="event-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="eventDetailsTitle"
+        >
+
+            <button
+                type="button"
+                class="modal-close-button"
+                id="closeEventDetailsModal"
+                aria-label="Close event details"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="modal-header">
+
+                <span class="modal-label">
+                    Event Details
+                </span>
+
+                <h2 id="eventDetailsTitle">
+                    Event
+                </h2>
+
+                <span
+                    class="modal-status"
+                    id="detailsEventStatus"
+                >
+                    Planned
+                </span>
+
+            </div>
+
+            <div class="event-detail-grid">
+
+                <div>
+                    <span>Event Type</span>
+                    <strong id="detailsEventType">-</strong>
+                </div>
+
+                <div>
+                    <span>Customer</span>
+                    <strong id="detailsCustomerName">-</strong>
+                </div>
+
+                <div>
+                    <span>Facility</span>
+                    <strong id="detailsFacilityName">-</strong>
+                </div>
+
+                <div>
+                    <span>Event Date</span>
+                    <strong id="detailsEventDate">-</strong>
+                </div>
+
+                <div>
+                    <span>Start Time</span>
+                    <strong id="detailsStartTime">-</strong>
+                </div>
+
+                <div>
+                    <span>End Time</span>
+                    <strong id="detailsEndTime">-</strong>
+                </div>
+
+                <div>
+                    <span>Guest Count</span>
+                    <strong id="detailsGuestCount">0</strong>
+                </div>
+
+                <div>
+                    <span>Total Amount</span>
+                    <strong id="detailsTotalAmount">LKR 0</strong>
+                </div>
+
+            </div>
+
+            <div class="notes-box">
+
+                <span>Notes</span>
+
+                <p id="detailsEventNotes">
+                    No notes provided.
+                </p>
+
+            </div>
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="status-action-button edit-action"
+                    id="editSelectedEventButton"
+                >
+                    <i class="fa-solid fa-pen"></i>
+                    Edit
+                </button>
+
+                <button
+                    type="button"
+                    class="status-action-button confirm-action"
+                    id="confirmSelectedEventButton"
+                >
+                    <i class="fa-solid fa-check"></i>
+                    Confirm
+                </button>
+
+                <button
+                    type="button"
+                    class="status-action-button complete-action"
+                    id="completeSelectedEventButton"
+                >
+                    <i class="fa-solid fa-flag-checkered"></i>
+                    Complete
+                </button>
+
+                <button
+                    type="button"
+                    class="status-action-button cancel-action"
+                    id="cancelSelectedEventButton"
+                >
+                    <i class="fa-solid fa-ban"></i>
+                    Cancel Event
+                </button>
+
+                <button
+                    type="button"
+                    class="status-action-button delete-action"
+                    id="deleteSelectedEventButton"
+                >
+                    <i class="fa-solid fa-trash"></i>
+                    Delete
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ADD / EDIT EVENT MODAL -->
+    <div
+        class="modal-overlay"
+        id="eventFormModal"
+        hidden
+    >
+
+        <div
+            class="event-modal event-form-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="eventFormTitle"
+        >
+
+            <button
+                type="button"
+                class="modal-close-button"
+                id="closeEventFormModal"
+                aria-label="Close event form"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="modal-header">
+
+                <span class="modal-label">
+                    Event Information
+                </span>
+
+                <h2 id="eventFormTitle">
+                    Add Event
+                </h2>
+
+                <p>
+                    Enter the event, customer and venue information.
+                </p>
+
+            </div>
+
+            <form
+                id="eventForm"
+                novalidate
+            >
+
+                <input
+                    type="hidden"
+                    id="eventId"
+                >
+
+                <div class="form-grid">
+
+                    <div class="form-group full-width">
+
+                        <label for="eventName">
+                            Event Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="eventName"
+                            maxlength="150"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="eventType">
+                            Event Type
+                        </label>
+
+                        <select
+                            id="eventType"
+                            required
+                        >
+                            <option value="">
+                                Select event type
+                            </option>
+
+                            <option value="Wedding">Wedding</option>
+                            <option value="Birthday Party">Birthday Party</option>
+                            <option value="Conference">Conference</option>
+                            <option value="Business Meeting">Business Meeting</option>
+                            <option value="Engagement">Engagement</option>
+                            <option value="Reunion">Reunion</option>
+                            <option value="Corporate Dinner">Corporate Dinner</option>
+                            <option value="Product Launch">Product Launch</option>
+                            <option value="Gala Dinner">Gala Dinner</option>
+                            <option value="Award Ceremony">Award Ceremony</option>
+                            <option value="Workshop">Workshop</option>
+                            <option value="Music Event">Music Event</option>
+                            <option value="Anniversary">Anniversary</option>
+                            <option value="Reception">Reception</option>
+                            <option value="Other">Other</option>
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="eventStatus">
+                            Status
+                        </label>
+
+                        <select
+                            id="eventStatus"
+                            required
+                        >
+                            <option value="Planned">Planned</option>
+                            <option value="Confirmed">Confirmed</option>
+                            <option value="Completed">Completed</option>
+                            <option value="Cancelled">Cancelled</option>
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="eventCustomer">
+                            Customer
+                        </label>
+
+                        <select
+                            id="eventCustomer"
+                            required
+                        >
+                            <option value="">
+                                Select customer
+                            </option>
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="eventFacility">
+                            Facility
+                        </label>
+
+                        <select
+                            id="eventFacility"
+                            required
+                        >
+                            <option value="">
+                                Select facility
+                            </option>
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="eventDate">
+                            Event Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="eventDate"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="eventGuestCount">
+                            Guest Count
+                        </label>
+
+                        <input
+                            type="number"
+                            id="eventGuestCount"
+                            min="1"
+                            value="1"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="eventStartTime">
+                            Start Time
+                        </label>
+
+                        <input
+                            type="time"
+                            id="eventStartTime"
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="eventEndTime">
+                            End Time
+                        </label>
+
+                        <input
+                            type="time"
+                            id="eventEndTime"
+                        >
+
+                    </div>
+
+                    <div class="form-group full-width">
+
+                        <label for="eventTotalAmount">
+                            Total Amount (LKR)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="eventTotalAmount"
+                            min="0"
+                            step="0.01"
+                            value="0"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="form-group full-width">
+
+                        <label for="eventNotes">
+                            Notes
+                        </label>
+
+                        <textarea
+                            id="eventNotes"
+                            rows="4"
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+                <p
+                    class="form-message"
+                    id="eventFormMessage"
+                ></p>
+
+                <div class="modal-form-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="cancelEventFormButton"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                        id="saveEventButton"
+                    >
+                        <i class="fa-solid fa-floppy-disk"></i>
+                        Save Event
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- TOAST -->
+    <div
+        class="admin-toast"
+        id="adminToast"
+        role="alert"
+        aria-live="polite"
+    ></div>
+
+    <script src="assets/js/admin-events.js"></script>
+
+</body>
+
+</html>

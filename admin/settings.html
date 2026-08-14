@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Settings | Willuda Inn Admin</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="assets/css/admin-common.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="assets/css/admin-settings.css"
+    >
+</head>
+
+<body>
+
+    <div class="admin-layout">
+
+        <!-- SIDEBAR -->
+        <aside
+            class="admin-sidebar"
+            id="adminSidebar"
+        >
+
+            <div class="sidebar-brand">
+
+                <a href="admin-dashboard.html">
+
+                    <span class="brand-title">
+                        Willuda Admin
+                    </span>
+
+                    <span class="brand-subtitle">
+                        Management Portal
+                    </span>
+
+                </a>
+
+                <button
+                    type="button"
+                    class="sidebar-close-button"
+                    id="sidebarCloseButton"
+                    aria-label="Close sidebar"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+            <nav class="sidebar-navigation">
+
+                <a
+                    href="admin-dashboard.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-table-cells-large"></i>
+                    <span>Overview</span>
+                </a>
+
+                <a
+                    href="bookings.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span>Bookings</span>
+                </a>
+
+                <a
+                    href="facilities.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-bed"></i>
+                    <span>Facilities</span>
+                </a>
+
+                <a
+                    href="customers.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-users"></i>
+                    <span>Customers</span>
+                </a>
+
+                <a
+                    href="reports.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-chart-column"></i>
+                    <span>Reports</span>
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <div class="system-status">
+                    <span class="status-dot"></span>
+                    System Status: Active
+                </div>
+
+                <a
+                    href="settings.html"
+                    class="sidebar-link active"
+                >
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                </a>
+
+                <a
+                    href="../index.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Exit Admin</span>
+                </a>
+
+                <div class="admin-user-card">
+
+                    <div class="admin-avatar">
+                        <span>AU</span>
+                    </div>
+
+                    <div>
+                        <strong id="sidebarAdminName">
+                            Admin User
+                        </strong>
+
+                        <small>
+                            Manager Role
+                        </small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+        <!-- MOBILE OVERLAY -->
+        <div
+            class="sidebar-overlay"
+            id="sidebarOverlay"
+        ></div>
+
+        <!-- MAIN CONTENT -->
+        <main class="admin-main">
+
+            <!-- TOP BAR -->
+            <header class="settings-topbar">
+
+                <div class="topbar-left">
+
+                    <button
+                        type="button"
+                        class="sidebar-toggle-button"
+                        id="sidebarToggleButton"
+                        aria-label="Open sidebar"
+                    >
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+
+                    <div>
+
+                        <span class="page-label">
+                            System Configuration
+                        </span>
+
+                        <h1>
+                            Admin Settings
+                        </h1>
+
+                        <p>
+                            Manage your profile, security, notifications,
+                            appearance and backup preferences.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="primary-button"
+                    id="saveSettingsButton"
+                >
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    Save Settings
+                </button>
+
+            </header>
+
+            <!-- SETTINGS FORM -->
+            <form
+                id="adminSettingsForm"
+                novalidate
+            >
+
+                <div class="settings-layout">
+
+                    <!-- LEFT COLUMN -->
+                    <div class="settings-column">
+
+                        <!-- PROFILE SETTINGS -->
+                        <section class="settings-card">
+
+                            <div class="settings-card-header">
+
+                                <div class="settings-card-icon">
+                                    <i class="fa-solid fa-user-gear"></i>
+                                </div>
+
+                                <div>
+                                    <span class="settings-label">
+                                        Administrator
+                                    </span>
+
+                                    <h2>
+                                        Profile Settings
+                                    </h2>
+
+                                    <p>
+                                        Update your administrative account information.
+                                    </p>
+                                </div>
+
+                            </div>
+
+                            <div class="profile-preview">
+
+                                <div
+                                    class="profile-avatar"
+                                    id="profileAvatar"
+                                >
+                                    AU
+                                </div>
+
+                                <div>
+
+                                    <strong id="profilePreviewName">
+                                        Admin User
+                                    </strong>
+
+                                    <span id="profilePreviewEmail">
+                                        admin@willudainn.com
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                            <div class="settings-grid">
+
+                                <div class="form-group">
+
+                                    <label for="adminFullName">
+                                        Full Name
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="adminFullName"
+                                        autocomplete="name"
+                                        required
+                                    >
+
+                                    <small
+                                        class="field-error"
+                                        id="adminFullNameError"
+                                    ></small>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label for="adminEmail">
+                                        Email Address
+                                    </label>
+
+                                    <input
+                                        type="email"
+                                        id="adminEmail"
+                                        autocomplete="email"
+                                        required
+                                    >
+
+                                    <small
+                                        class="field-error"
+                                        id="adminEmailError"
+                                    ></small>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label for="adminPhone">
+                                        Phone Number
+                                    </label>
+
+                                    <input
+                                        type="tel"
+                                        id="adminPhone"
+                                        autocomplete="tel"
+                                    >
+
+                                    <small
+                                        class="field-error"
+                                        id="adminPhoneError"
+                                    ></small>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label for="adminRole">
+                                        Role
+                                    </label>
+
+                                    <select id="adminRole">
+
+                                        <option value="Manager">
+                                            Manager
+                                        </option>
+
+                                        <option value="Administrator">
+                                            Administrator
+                                        </option>
+
+                                        <option value="Receptionist">
+                                            Receptionist
+                                        </option>
+
+                                        <option value="Event Manager">
+                                            Event Manager
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+                        </section>
+
+                        <!-- PASSWORD SETTINGS -->
+                        <section class="settings-card">
+
+                            <div class="settings-card-header">
+
+                                <div class="settings-card-icon security-icon">
+                                    <i class="fa-solid fa-shield-halved"></i>
+                                </div>
+
+                                <div>
+
+                                    <span class="settings-label">
+                                        Account Security
+                                    </span>
+
+                                    <h2>
+                                        Change Password
+                                    </h2>
+
+                                    <p>
+                                        Use a strong password to protect the admin account.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                            <div class="settings-grid">
+
+                                <div class="form-group full-width">
+
+                                    <label for="currentPassword">
+                                        Current Password
+                                    </label>
+
+                                    <div class="password-field">
+
+                                        <input
+                                            type="password"
+                                            id="currentPassword"
+                                            autocomplete="current-password"
+                                        >
+
+                                        <button
+                                            type="button"
+                                            class="password-toggle"
+                                            data-target="currentPassword"
+                                            aria-label="Show current password"
+                                        >
+                                            <i class="fa-regular fa-eye"></i>
+                                        </button>
+
+                                    </div>
+
+                                    <small
+                                        class="field-error"
+                                        id="currentPasswordError"
+                                    ></small>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label for="newPassword">
+                                        New Password
+                                    </label>
+
+                                    <div class="password-field">
+
+                                        <input
+                                            type="password"
+                                            id="newPassword"
+                                            autocomplete="new-password"
+                                        >
+
+                                        <button
+                                            type="button"
+                                            class="password-toggle"
+                                            data-target="newPassword"
+                                            aria-label="Show new password"
+                                        >
+                                            <i class="fa-regular fa-eye"></i>
+                                        </button>
+
+                                    </div>
+
+                                    <small
+                                        class="field-error"
+                                        id="newPasswordError"
+                                    ></small>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label for="confirmPassword">
+                                        Confirm New Password
+                                    </label>
+
+                                    <div class="password-field">
+
+                                        <input
+                                            type="password"
+                                            id="confirmPassword"
+                                            autocomplete="new-password"
+                                        >
+
+                                        <button
+                                            type="button"
+                                            class="password-toggle"
+                                            data-target="confirmPassword"
+                                            aria-label="Show confirmed password"
+                                        >
+                                            <i class="fa-regular fa-eye"></i>
+                                        </button>
+
+                                    </div>
+
+                                    <small
+                                        class="field-error"
+                                        id="confirmPasswordError"
+                                    ></small>
+
+                                </div>
+
+                            </div>
+
+                            <div class="password-information">
+
+                                <i class="fa-solid fa-circle-info"></i>
+
+                                <p>
+                                    Leave all password fields empty when you do
+                                    not need to change the password.
+                                </p>
+
+                            </div>
+
+                        </section>
+
+                    </div>
+
+                    <!-- RIGHT COLUMN -->
+                    <div class="settings-column">
+
+                        <!-- NOTIFICATION SETTINGS -->
+                        <section class="settings-card">
+
+                            <div class="settings-card-header">
+
+                                <div class="settings-card-icon notification-icon">
+                                    <i class="fa-solid fa-bell"></i>
+                                </div>
+
+                                <div>
+
+                                    <span class="settings-label">
+                                        Communication
+                                    </span>
+
+                                    <h2>
+                                        Notification Settings
+                                    </h2>
+
+                                    <p>
+                                        Choose which notifications the system should send.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                            <div class="settings-option-list">
+
+                                <label class="settings-option">
+
+                                    <div>
+
+                                        <strong>
+                                            Email Notifications
+                                        </strong>
+
+                                        <span>
+                                            Receive booking and system alerts by email.
+                                        </span>
+
+                                    </div>
+
+                                    <span class="switch">
+
+                                        <input
+                                            type="checkbox"
+                                            id="emailNotifications"
+                                        >
+
+                                        <span class="slider"></span>
+
+                                    </span>
+
+                                </label>
+
+                                <label class="settings-option">
+
+                                    <div>
+
+                                        <strong>
+                                            SMS Notifications
+                                        </strong>
+
+                                        <span>
+                                            Receive urgent reservation alerts by SMS.
+                                        </span>
+
+                                    </div>
+
+                                    <span class="switch">
+
+                                        <input
+                                            type="checkbox"
+                                            id="smsNotifications"
+                                        >
+
+                                        <span class="slider"></span>
+
+                                    </span>
+
+                                </label>
+
+                                <label class="settings-option">
+
+                                    <div>
+
+                                        <strong>
+                                            New Booking Alerts
+                                        </strong>
+
+                                        <span>
+                                            Notify the admin when a new booking is created.
+                                        </span>
+
+                                    </div>
+
+                                    <span class="switch">
+
+                                        <input
+                                            type="checkbox"
+                                            id="bookingNotifications"
+                                        >
+
+                                        <span class="slider"></span>
+
+                                    </span>
+
+                                </label>
+
+                                <label class="settings-option">
+
+                                    <div>
+
+                                        <strong>
+                                            Payment Alerts
+                                        </strong>
+
+                                        <span>
+                                            Notify the admin about completed or failed payments.
+                                        </span>
+
+                                    </div>
+
+                                    <span class="switch">
+
+                                        <input
+                                            type="checkbox"
+                                            id="paymentNotifications"
+                                        >
+
+                                        <span class="slider"></span>
+
+                                    </span>
+
+                                </label>
+
+                            </div>
+
+                        </section>
+
+                        <!-- APPEARANCE SETTINGS -->
+                        <section class="settings-card">
+
+                            <div class="settings-card-header">
+
+                                <div class="settings-card-icon appearance-icon">
+                                    <i class="fa-solid fa-palette"></i>
+                                </div>
+
+                                <div>
+
+                                    <span class="settings-label">
+                                        Interface
+                                    </span>
+
+                                    <h2>
+                                        Appearance Settings
+                                    </h2>
+
+                                    <p>
+                                        Select the preferred admin dashboard appearance.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                            <div class="settings-grid">
+
+                                <div class="form-group full-width">
+
+                                    <label for="themeSelection">
+                                        Theme
+                                    </label>
+
+                                    <select id="themeSelection">
+
+                                        <option value="light">
+                                            Light Theme
+                                        </option>
+
+                                        <option value="dark">
+                                            Dark Theme
+                                        </option>
+
+                                        <option value="system">
+                                            Use System Theme
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label for="languageSelection">
+                                        Language
+                                    </label>
+
+                                    <select id="languageSelection">
+
+                                        <option value="English">
+                                            English
+                                        </option>
+
+                                        <option value="Sinhala">
+                                            Sinhala
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label for="currencySelection">
+                                        Currency
+                                    </label>
+
+                                    <select id="currencySelection">
+
+                                        <option value="LKR">
+                                            LKR - Sri Lankan Rupee
+                                        </option>
+
+                                        <option value="USD">
+                                            USD - US Dollar
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+                        </section>
+
+                        <!-- BACKUP SETTINGS -->
+                        <section class="settings-card">
+
+                            <div class="settings-card-header">
+
+                                <div class="settings-card-icon backup-icon">
+                                    <i class="fa-solid fa-database"></i>
+                                </div>
+
+                                <div>
+
+                                    <span class="settings-label">
+                                        Data Protection
+                                    </span>
+
+                                    <h2>
+                                        Backup Settings
+                                    </h2>
+
+                                    <p>
+                                        Download or restore frontend project data.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                            <label class="settings-option backup-switch-option">
+
+                                <div>
+
+                                    <strong>
+                                        Automatic Backup
+                                    </strong>
+
+                                    <span>
+                                        Create a local backup when important settings change.
+                                    </span>
+
+                                </div>
+
+                                <span class="switch">
+
+                                    <input
+                                        type="checkbox"
+                                        id="automaticBackup"
+                                    >
+
+                                    <span class="slider"></span>
+
+                                </span>
+
+                            </label>
+
+                            <div class="backup-information">
+
+                                <div>
+
+                                    <span>
+                                        Last Backup
+                                    </span>
+
+                                    <strong id="lastBackupDate">
+                                        No backup created
+                                    </strong>
+
+                                </div>
+
+                                <div>
+
+                                    <span>
+                                        Stored Modules
+                                    </span>
+
+                                    <strong>
+                                        Bookings, customers, facilities and settings
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+                            <div class="backup-actions">
+
+                                <button
+                                    type="button"
+                                    class="secondary-button"
+                                    id="createBackupButton"
+                                >
+                                    <i class="fa-solid fa-download"></i>
+                                    Create Backup
+                                </button>
+
+                                <label
+                                    for="restoreBackupInput"
+                                    class="secondary-button restore-button"
+                                >
+                                    <i class="fa-solid fa-upload"></i>
+                                    Restore Backup
+                                </label>
+
+                                <input
+                                    type="file"
+                                    id="restoreBackupInput"
+                                    accept=".json,application/json"
+                                    hidden
+                                >
+
+                            </div>
+
+                        </section>
+
+                    </div>
+
+                </div>
+
+                <p
+                    class="settings-form-message"
+                    id="settingsFormMessage"
+                ></p>
+
+                <div class="settings-bottom-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="resetSettingsButton"
+                    >
+                        <i class="fa-solid fa-rotate-left"></i>
+                        Reset Changes
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+                        <i class="fa-solid fa-floppy-disk"></i>
+                        Save All Settings
+                    </button>
+
+                </div>
+
+            </form>
+
+            <footer class="admin-footer">
+
+                <p>
+                    © 2026 Willuda Inn Management Console.
+                </p>
+
+                <div>
+
+                    <span>
+                        <i class="fa-solid fa-circle"></i>
+                        Settings Module
+                    </span>
+
+                    <span>
+                        <i class="fa-solid fa-circle"></i>
+                        Frontend Storage
+                    </span>
+
+                </div>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+    <div
+        class="admin-toast"
+        id="adminToast"
+        role="alert"
+        aria-live="polite"
+    ></div>
+
+    <script src="assets/js/admin-settings.js"></script>
+
+</body>
+
+</html>

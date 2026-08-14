@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>My Bookings | Willuda Inn</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Cormorant+Garamond:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <!-- My Bookings CSS -->
+    <link
+        rel="stylesheet"
+        href="assets/css/my-bookings.css"
+    >
+</head>
+
+<body>
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+    <header class="bookings-header">
+
+        <div class="header-content">
+
+            <a
+                href="dashboard.html"
+                class="back-link"
+            >
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to Dashboard
+            </a>
+
+            <div class="header-text">
+
+                <span class="page-label">
+                    Customer Portal
+                </span>
+
+                <h1>My Bookings</h1>
+
+                <p>
+                    View and manage all your room and event reservations.
+                </p>
+
+            </div>
+
+            <a
+                href="booking.html"
+                class="new-booking-button"
+            >
+                <i class="fa-solid fa-plus"></i>
+                New Booking
+            </a>
+
+        </div>
+
+    </header>
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+    <main class="bookings-container">
+
+        <!-- =========================
+             STATISTICS
+        ========================== -->
+        <section class="statistics-grid">
+
+            <article class="stat-card">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-calendar-days"></i>
+                </div>
+
+                <div>
+                    <span>Total Bookings</span>
+
+                    <strong id="totalBookings">
+                        0
+                    </strong>
+                </div>
+
+            </article>
+
+            <article class="stat-card">
+
+                <div class="stat-icon confirmed-icon">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+
+                <div>
+                    <span>Confirmed</span>
+
+                    <strong id="confirmedBookings">
+                        0
+                    </strong>
+                </div>
+
+            </article>
+
+            <article class="stat-card">
+
+                <div class="stat-icon pending-icon">
+                    <i class="fa-solid fa-clock"></i>
+                </div>
+
+                <div>
+                    <span>Pending Payment</span>
+
+                    <strong id="pendingPayments">
+                        0
+                    </strong>
+                </div>
+
+            </article>
+
+            <article class="stat-card">
+
+                <div class="stat-icon cancelled-icon">
+                    <i class="fa-solid fa-ban"></i>
+                </div>
+
+                <div>
+                    <span>Cancelled</span>
+
+                    <strong id="cancelledBookings">
+                        0
+                    </strong>
+                </div>
+
+            </article>
+
+        </section>
+
+        <!-- =========================
+             BOOKINGS PANEL
+        ========================== -->
+        <section class="bookings-panel">
+
+            <div class="panel-heading">
+
+                <div>
+                    <h2>Reservation History</h2>
+
+                    <p>
+                        Search, filter and manage your bookings.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- FILTERS -->
+            <div class="filter-bar">
+
+                <div class="search-box">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="search"
+                        id="bookingSearch"
+                        placeholder="Search by booking ID or facility..."
+                        aria-label="Search bookings"
+                    >
+
+                </div>
+
+                <div class="filter-group">
+
+                    <label for="bookingStatusFilter">
+                        Booking Status
+                    </label>
+
+                    <select id="bookingStatusFilter">
+
+                        <option value="all">
+                            All Statuses
+                        </option>
+
+                        <option value="confirmed">
+                            Confirmed
+                        </option>
+
+                        <option value="pending">
+                            Pending
+                        </option>
+
+                        <option value="completed">
+                            Completed
+                        </option>
+
+                        <option value="cancelled">
+                            Cancelled
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="filter-group">
+
+                    <label for="paymentStatusFilter">
+                        Payment Status
+                    </label>
+
+                    <select id="paymentStatusFilter">
+
+                        <option value="all">
+                            All Payments
+                        </option>
+
+                        <option value="pending">
+                            Pending
+                        </option>
+
+                        <option value="paid">
+                            Paid
+                        </option>
+
+                        <option value="failed">
+                            Failed
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="clear-filter-button"
+                    id="clearFiltersButton"
+                >
+                    <i class="fa-solid fa-rotate-left"></i>
+                    Clear
+                </button>
+
+            </div>
+
+            <!-- =========================
+                 BOOKINGS TABLE
+            ========================== -->
+            <div
+                class="table-wrapper"
+                id="bookingsTableWrapper"
+            >
+
+                <table class="bookings-table">
+
+                    <thead>
+
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>Facility</th>
+                            <th>Check In</th>
+                            <th>Check Out</th>
+                            <th>Total</th>
+                            <th>Booking Status</th>
+                            <th>Payment</th>
+                            <th>Actions</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="bookingsTableBody">
+
+                        <!-- JavaScript booking rows -->
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <!-- =========================
+                 EMPTY STATE
+            ========================== -->
+            <div
+                class="empty-state"
+                id="emptyBookings"
+                hidden
+            >
+
+                <div class="empty-icon">
+                    <i class="fa-solid fa-calendar-xmark"></i>
+                </div>
+
+                <h3>No Bookings Found</h3>
+
+                <p id="emptyBookingMessage">
+                    You have not created any bookings yet.
+                </p>
+
+                <a
+                    href="booking.html"
+                    class="primary-button"
+                >
+                    <i class="fa-solid fa-plus"></i>
+                    Create New Booking
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- =========================
+         CANCEL CONFIRMATION MODAL
+    ========================== -->
+    <div
+        class="modal-overlay"
+        id="cancelModal"
+        aria-hidden="true"
+    >
+
+        <div
+            class="modal-card"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="cancelModalTitle"
+        >
+
+            <button
+                type="button"
+                class="modal-close"
+                id="closeCancelModal"
+                aria-label="Close modal"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="modal-icon">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+
+            <h2 id="cancelModalTitle">
+                Cancel Booking?
+            </h2>
+
+            <p>
+                Are you sure you want to cancel booking
+                <strong id="cancelBookingId">-</strong>?
+                This action will update the booking status to cancelled.
+            </p>
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    id="keepBookingButton"
+                >
+                    Keep Booking
+                </button>
+
+                <button
+                    type="button"
+                    class="danger-button"
+                    id="confirmCancelButton"
+                >
+                    <i class="fa-solid fa-ban"></i>
+                    Cancel Booking
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- =========================
+         TOAST MESSAGE
+    ========================== -->
+    <div
+        class="toast-message"
+        id="toastMessage"
+        role="alert"
+        aria-live="polite"
+    ></div>
+
+    <!-- Footer -->
+    <footer class="bookings-footer">
+
+        <p>
+            © 2026 Willuda Inn. All rights reserved.
+        </p>
+
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/js/my-bookings.js"></script>
+
+</body>
+
+</html>

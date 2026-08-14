@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Facilities | Willuda Inn</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Cormorant+Garamond:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <!-- Page CSS -->
+    <link
+        rel="stylesheet"
+        href="assets/css/facilities.css"
+    >
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="facilities-header">
+
+        <nav class="main-navigation">
+
+            <a
+                href="index.html"
+                class="brand"
+            >
+                <span class="brand-icon">W</span>
+
+                <span>
+                    <strong>Willuda Inn</strong>
+                    <small>Hotel & Event Venue</small>
+                </span>
+            </a>
+
+            <div class="navigation-links">
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a
+                    href="facilities.html"
+                    class="active"
+                >
+                    Facilities
+                </a>
+
+                <a href="about.html">
+                    About
+                </a>
+
+                <a href="contact.html">
+                    Contact
+                </a>
+
+                <a
+                    href="dashboard.html"
+                    class="account-link"
+                >
+                    <i class="fa-solid fa-user"></i>
+                    My Account
+                </a>
+
+            </div>
+
+            <button
+                type="button"
+                class="mobile-menu-button"
+                id="mobileMenuButton"
+                aria-label="Open navigation menu"
+            >
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+        </nav>
+
+        <div class="hero-content">
+
+            <span class="page-label">
+                Explore Willuda Inn
+            </span>
+
+            <h1>Our Facilities</h1>
+
+            <p>
+                Discover comfortable rooms, elegant halls and flexible event
+                spaces designed for memorable stays and celebrations.
+            </p>
+
+        </div>
+
+    </header>
+
+    <!-- Mobile Menu -->
+    <div
+        class="mobile-menu"
+        id="mobileMenu"
+        hidden
+    >
+        <a href="index.html">Home</a>
+        <a href="facilities.html">Facilities</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="dashboard.html">My Account</a>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- Introduction -->
+        <section class="facilities-introduction">
+
+            <div>
+
+                <span class="section-label">
+                    Stay, Celebrate and Connect
+                </span>
+
+                <h2>
+                    Find the Perfect Space for Every Occasion
+                </h2>
+
+            </div>
+
+            <p>
+                Whether you are planning a relaxing stay, a family gathering,
+                a business meeting or a grand celebration, Willuda Inn offers
+                facilities suitable for different needs and group sizes.
+            </p>
+
+        </section>
+
+        <!-- Filters -->
+        <section class="facility-filter-section">
+
+            <div class="search-wrapper">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="search"
+                    id="facilitySearch"
+                    placeholder="Search facilities..."
+                    aria-label="Search facilities"
+                >
+
+            </div>
+
+            <div
+                class="category-filters"
+                id="categoryFilters"
+            >
+
+                <button
+                    type="button"
+                    class="filter-button active"
+                    data-category="All"
+                >
+                    All Facilities
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-button"
+                    data-category="Room"
+                >
+                    Rooms
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-button"
+                    data-category="Hall"
+                >
+                    Halls
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-button"
+                    data-category="Event Space"
+                >
+                    Event Spaces
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-button"
+                    data-category="Restaurant"
+                >
+                    Restaurant
+                </button>
+
+            </div>
+
+            <select
+                id="facilitySort"
+                aria-label="Sort facilities"
+            >
+                <option value="recommended">
+                    Recommended
+                </option>
+
+                <option value="price-low">
+                    Price: Low to High
+                </option>
+
+                <option value="price-high">
+                    Price: High to Low
+                </option>
+
+                <option value="capacity-high">
+                    Highest Capacity
+                </option>
+            </select>
+
+        </section>
+
+        <!-- Results Summary -->
+        <section class="results-summary">
+
+            <p>
+                Showing
+                <strong id="facilityResultCount">0</strong>
+                facilities
+            </p>
+
+            <button
+                type="button"
+                id="clearFacilityFilters"
+            >
+                <i class="fa-solid fa-rotate-left"></i>
+                Clear Filters
+            </button>
+
+        </section>
+
+        <!-- Facilities Grid -->
+        <section
+            class="facilities-grid"
+            id="facilitiesGrid"
+        ></section>
+
+        <!-- Empty State -->
+        <section
+            class="empty-facilities"
+            id="emptyFacilities"
+            hidden
+        >
+
+            <div class="empty-icon">
+                <i class="fa-solid fa-building-circle-xmark"></i>
+            </div>
+
+            <h2>No Facilities Found</h2>
+
+            <p>
+                No facilities match your selected search and filters.
+            </p>
+
+            <button
+                type="button"
+                id="emptyClearButton"
+            >
+                Clear Filters
+            </button>
+
+        </section>
+
+        <!-- Service Features -->
+        <section class="service-features">
+
+            <article>
+
+                <i class="fa-solid fa-wifi"></i>
+
+                <h3>Free Wi-Fi</h3>
+
+                <p>
+                    Stay connected throughout your visit.
+                </p>
+
+            </article>
+
+            <article>
+
+                <i class="fa-solid fa-square-parking"></i>
+
+                <h3>Secure Parking</h3>
+
+                <p>
+                    Convenient parking for guests and visitors.
+                </p>
+
+            </article>
+
+            <article>
+
+                <i class="fa-solid fa-headset"></i>
+
+                <h3>Customer Support</h3>
+
+                <p>
+                    Friendly assistance for bookings and events.
+                </p>
+
+            </article>
+
+            <article>
+
+                <i class="fa-solid fa-utensils"></i>
+
+                <h3>Food Service</h3>
+
+                <p>
+                    Custom food packages for stays and events.
+                </p>
+
+            </article>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="facilities-footer">
+
+        <div class="footer-content">
+
+            <div>
+
+                <h2>Willuda Inn</h2>
+
+                <p>
+                    Comfortable accommodation and elegant event facilities
+                    for every special occasion.
+                </p>
+
+            </div>
+
+            <div>
+
+                <h3>Quick Links</h3>
+
+                <a href="index.html">Home</a>
+                <a href="facilities.html">Facilities</a>
+                <a href="booking.html">Book Now</a>
+                <a href="contact.html">Contact</a>
+
+            </div>
+
+            <div>
+
+                <h3>Contact</h3>
+
+                <p>
+                    <i class="fa-solid fa-location-dot"></i>
+                    Sri Lanka
+                </p>
+
+                <p>
+                    <i class="fa-solid fa-phone"></i>
+                    +94 77 000 0000
+                </p>
+
+                <p>
+                    <i class="fa-solid fa-envelope"></i>
+                    info@willudainn.com
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 Willuda Inn. All rights reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+    <!-- Toast -->
+    <div
+        class="toast-message"
+        id="toastMessage"
+        role="alert"
+        aria-live="polite"
+    ></div>
+
+    <script src="assets/js/facilities.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,289 @@
+/* ==============================
+   RESET
+============================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #111b31;
+    --secondary: #a27b22;
+    --white: #ffffff;
+    --light: #f7f7f7;
+    --gray: #666666;
+    --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    line-height: 1.6;
+    background-color: var(--white);
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    width: 100%;
+    display: block;
+}
+
+/* ==============================
+   HEADER
+============================== */
+
+.about-header {
+    height: 550px;
+    background:
+        linear-gradient(
+            rgba(17, 27, 49, 0.8),
+            rgba(17, 27, 49, 0.8)
+        ),
+        url("../images/about-banner.jpg");
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+/* ==============================
+   NAVIGATION
+============================== */
+
+.navbar {
+    width: 90%;
+    margin: auto;
+    padding: 25px 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: white;
+    font-size: 35px;
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 700;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: white;
+    transition: 0.3s;
+}
+
+.nav-links a:hover,
+.active {
+    color: var(--secondary);
+}
+
+/* ==============================
+   HERO SECTION
+============================== */
+
+.hero-content {
+    width: 90%;
+    margin: 120px auto;
+}
+
+.hero-content span {
+    color: var(--secondary);
+    letter-spacing: 3px;
+}
+
+.hero-content h1 {
+    margin-top: 15px;
+    font-size: 65px;
+    max-width: 700px;
+}
+
+.hero-content p {
+    max-width: 600px;
+    margin-top: 20px;
+}
+
+/* ==============================
+   STORY SECTION
+============================== */
+
+.story-section {
+    width: 90%;
+    margin: 100px auto;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+}
+
+.story-image img {
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+}
+
+.story-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.story-content span {
+    color: var(--secondary);
+    font-weight: 600;
+}
+
+.story-content h2 {
+    margin: 20px 0;
+    color: var(--primary);
+    font-size: 40px;
+}
+
+.story-content p {
+    margin-bottom: 20px;
+    color: var(--gray);
+}
+
+/* ==============================
+   MISSION
+============================== */
+
+.mission-section {
+    width: 90%;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.mission-card {
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+.mission-card i {
+    color: var(--secondary);
+    font-size: 40px;
+}
+
+.mission-card h3 {
+    margin: 20px 0;
+}
+
+/* ==============================
+   STATISTICS
+============================== */
+
+.statistics-section {
+    margin-top: 100px;
+    padding: 80px 0;
+    background-color: var(--primary);
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.stat-box {
+    text-align: center;
+    color: white;
+}
+
+.stat-box h2 {
+    color: var(--secondary);
+    font-size: 50px;
+}
+
+.stat-box p {
+    margin-top: 10px;
+}
+
+/* ==============================
+   SERVICES
+============================== */
+
+.services-section {
+    width: 90%;
+    margin: 100px auto;
+}
+
+.services-section h2 {
+    margin-bottom: 50px;
+    text-align: center;
+    color: var(--primary);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.service-card {
+    padding: 40px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+}
+
+.service-card i {
+    color: var(--secondary);
+    font-size: 45px;
+}
+
+.service-card h3 {
+    margin: 20px 0;
+}
+
+.service-card p {
+    color: var(--gray);
+}
+
+/* ==============================
+   FOOTER
+============================== */
+
+footer {
+    padding: 30px;
+    background-color: var(--primary);
+    color: white;
+    text-align: center;
+}
+
+/* ==============================
+   RESPONSIVE DESIGN
+============================== */
+
+@media (max-width: 992px) {
+
+    .story-section,
+    .mission-section,
+    .services-grid,
+    .statistics-section {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-content h1 {
+        font-size: 50px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .navbar {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .hero-content h1 {
+        font-size: 40px;
+    }
+}
