@@ -54,10 +54,40 @@ function updateAdminPassword(
 }
 
 /* =========================================
+   CREATE USER / ADMIN
+========================================= */
+
+function createUser(userData, callback) {
+    const sql = `
+        INSERT INTO admins (
+            full_name,
+            email,
+            password,
+            role,
+            status
+        )
+        VALUES (?, ?, ?, ?, ?)
+    `;
+
+    db.query(
+        sql,
+        [
+            userData.full_name,
+            userData.email,
+            userData.password,
+            userData.role || "Customer",
+            userData.status || "Active"
+        ],
+        callback
+    );
+}
+
+/* =========================================
    EXPORT MODEL FUNCTIONS
 ========================================= */
 
 module.exports = {
     findAdminByEmail,
-    updateAdminPassword
+    updateAdminPassword,
+    createUser
 };

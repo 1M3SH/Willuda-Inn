@@ -8,6 +8,8 @@ const bookingModel =
 ========================================= */
 
 function getBookings(request, response) {
+    const userEmail = request.query.email ? request.query.email.trim().toLowerCase() : null;
+
     bookingModel.getAllBookings(
         (error, results) => {
             if (error) {
@@ -25,10 +27,17 @@ function getBookings(request, response) {
                     });
             }
 
+            let filtered = results;
+            if (userEmail) {
+                filtered = results.filter(
+                    (b) => b.email && b.email.trim().toLowerCase() === userEmail
+                );
+            }
+
             response.status(200).json({
                 success: true,
-                count: results.length,
-                data: results
+                count: filtered.length,
+                data: filtered
             });
         }
     );
@@ -207,78 +216,109 @@ function updateBooking(request, response) {
         status
     } = request.body;
 
+    // If all fields provided, proceed directly
     if (
-        !customer_name ||
-        !email ||
-        !phone ||
-        !room_type ||
-        !check_in ||
-        !check_out ||
-        !guests ||
-        total_price === undefined ||
-        !status
+        customer_name &&
+        email &&
+        phone &&
+        room_type &&
+        check_in &&
+        check_out &&
+        guests &&
+        total_price !== undefined &&
+        status
     ) {
-        return response
-            .status(400)
-            .json({
-                success: false,
-                message:
-                    "Please provide all booking fields."
-            });
+        const bookingData = {
+            customer_name,
+            email,
+            phone,
+            room_type,
+            check_in,
+            check_out,
+            guests: Number(guests),
+            total_price: Number(total_price),
+            status
+        };
+
+        return bookingModel.updateBooking(
+            bookingId,
+            bookingData,
+            (error, result) => {
+                if (error) {
+                    console.error("Update booking error:", error);
+                    return response.status(500).json({
+                        success: false,
+                        message: "Failed to update booking."
+                    });
+                }
+
+                if (result.affectedRows === 0) {
+                    return response.status(404).json({
+                        success: false,
+                        message: "Booking not found."
+                    });
+                }
+
+                return response.status(200).json({
+                    success: true,
+                    message: "Booking updated successfully."
+                });
+            }
+        );
     }
 
-    const bookingData = {
-        customer_name,
-        email,
-        phone,
-        room_type,
-        check_in,
-        check_out,
-        guests:
-            Number(guests),
-        total_price:
-            Number(total_price),
-        status
-    };
-
-    bookingModel.updateBooking(
-        bookingId,
-        bookingData,
-        (error, result) => {
-            if (error) {
-                console.error(
-                    "Update booking error:",
-                    error
-                );
-
-                return response
-                    .status(500)
-                    .json({
-                        success: false,
-                        message:
-                            "Failed to update booking."
-                    });
-            }
-
-            if (
-                result.affectedRows === 0
-            ) {
-                return response
-                    .status(404)
-                    .json({
-                        success: false,
-                        message:
-                            "Booking not found."
-                    });
-            }
-
-            response.status(200).json({
-                success: true,
-                message:
-                    "Booking updated successfully."
+    // Partial update: fetch existing booking first to merge
+    bookingModel.getBookingById(bookingId, (err, results) => {
+        if (err) {
+            console.error("Get booking for update error:", err);
+            return response.status(500).json({
+                success: false,
+                message: "Failed to update booking."
             });
         }
-    );
+
+        if (!results || results.length === 0) {
+            return response.status(404).json({
+                success: false,
+                message: "Booking not found."
+            });
+        }
+
+        const current = results[0];
+        const bookingData = {
+            customer_name: customer_name || current.customer_name,
+            email: email || current.email,
+            phone: phone || current.phone,
+            room_type: room_type || current.room_type,
+            check_in: check_in || current.check_in,
+            check_out: check_out || current.check_out,
+            guests: guests !== undefined ? Number(guests) : current.guests,
+            total_price: total_price !== undefined ? Number(total_price) : current.total_price,
+            status: status || current.status
+        };
+
+        bookingModel.updateBooking(bookingId, bookingData, (error, result) => {
+            if (error) {
+                console.error("Update booking error:", error);
+                return response.status(500).json({
+                    success: false,
+                    message: "Failed to update booking."
+                });
+            }
+
+            if (result.affectedRows === 0) {
+                return response.status(404).json({
+                    success: false,
+                    message: "Booking not found."
+                });
+            }
+
+            return response.status(200).json({
+                success: true,
+                message: "Booking updated successfully."
+            });
+        });
+    });
 }
 
 /* =========================================

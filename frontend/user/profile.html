@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>My Profile | Willuda Inn</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Cormorant+Garamond:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <!-- Profile CSS -->
+    <link
+        rel="stylesheet"
+        href="assets/css/profile.css"
+    >
+</head>
+
+<body>
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+    <header class="profile-header">
+
+        <div class="header-content">
+
+            <a
+                href="dashboard.html"
+                class="back-link"
+            >
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to Dashboard
+            </a>
+
+            <div class="header-text">
+
+                <span class="page-label">
+                    Customer Account
+                </span>
+
+                <h1>My Profile</h1>
+
+                <p>
+                    Manage your personal information and account preferences.
+                </p>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+    <main class="profile-container">
+
+        <!-- =========================
+             PROFILE SIDEBAR
+        ========================== -->
+        <aside class="profile-sidebar">
+
+            <div class="profile-avatar-section">
+
+                <div
+                    class="profile-avatar"
+                    id="profileAvatar"
+                >
+                    <img
+                        src=""
+                        alt="Profile picture"
+                        id="profileImage"
+                        hidden
+                    >
+
+                    <span id="profileInitials">
+                        WI
+                    </span>
+                </div>
+
+                <input
+                    type="file"
+                    id="profileImageInput"
+                    accept="image/png, image/jpeg, image/webp"
+                    hidden
+                >
+
+                <button
+                    type="button"
+                    class="photo-button"
+                    id="changePhotoButton"
+                >
+                    <i class="fa-solid fa-camera"></i>
+                    Change Photo
+                </button>
+
+                <button
+                    type="button"
+                    class="remove-photo-button"
+                    id="removePhotoButton"
+                    hidden
+                >
+                    Remove Photo
+                </button>
+
+                <h2 id="sidebarName">
+                    Customer
+                </h2>
+
+                <p id="sidebarEmail"></p>
+
+            </div>
+
+            <nav class="profile-navigation">
+
+                <a
+                    href="profile.html"
+                    class="navigation-link active"
+                >
+                    <i class="fa-solid fa-user"></i>
+                    Personal Information
+                </a>
+
+                <a
+                    href="change-password.html"
+                    class="navigation-link"
+                >
+                    <i class="fa-solid fa-lock"></i>
+                    Change Password
+                </a>
+
+                <a
+                    href="my-bookings.html"
+                    class="navigation-link"
+                >
+                    <i class="fa-solid fa-calendar-days"></i>
+                    My Bookings
+                </a>
+
+                <a
+                    href="notifications.html"
+                    class="navigation-link"
+                >
+                    <i class="fa-solid fa-bell"></i>
+                    Notifications
+                </a>
+
+            </nav>
+
+            <div class="member-card">
+
+                <i class="fa-solid fa-crown"></i>
+
+                <div>
+                    <span>Membership</span>
+
+                    <strong>Customer Account</strong>
+                </div>
+
+            </div>
+
+        </aside>
+
+        <!-- =========================
+             PROFILE FORM SECTION
+        ========================== -->
+        <section class="profile-content">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        Account Details
+                    </span>
+
+                    <h2>Personal Information</h2>
+
+                    <p>
+                        Keep your information accurate for faster booking
+                        and communication.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div
+                class="form-message"
+                id="profileMessage"
+                role="alert"
+                aria-live="polite"
+            ></div>
+
+            <form
+                id="profileForm"
+                novalidate
+            >
+
+                <!-- FULL NAME -->
+                <div class="form-group full-width">
+
+                    <label for="fullName">
+                        Full Name
+                        <span>*</span>
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        <input
+                            type="text"
+                            id="fullName"
+                            name="fullName"
+                            placeholder="Enter your full name"
+                            autocomplete="name"
+                            required
+                        >
+
+                    </div>
+
+                    <small
+                        class="error-message"
+                        id="fullNameError"
+                    ></small>
+
+                </div>
+
+                <!-- EMAIL -->
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                        <span>*</span>
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-envelope"></i>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email address"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+                    <small
+                        class="error-message"
+                        id="emailError"
+                    ></small>
+
+                </div>
+
+                <!-- PHONE -->
+                <div class="form-group">
+
+                    <label for="phone">
+                        Phone Number
+                        <span>*</span>
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-phone"></i>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="Enter your phone number"
+                            autocomplete="tel"
+                            required
+                        >
+
+                    </div>
+
+                    <small
+                        class="error-message"
+                        id="phoneError"
+                    ></small>
+
+                </div>
+
+                <!-- DATE OF BIRTH -->
+                <div class="form-group">
+
+                    <label for="dateOfBirth">
+                        Date of Birth
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-cake-candles"></i>
+
+                        <input
+                            type="date"
+                            id="dateOfBirth"
+                            name="dateOfBirth"
+                        >
+
+                    </div>
+
+                    <small
+                        class="error-message"
+                        id="dateOfBirthError"
+                    ></small>
+
+                </div>
+
+                <!-- GENDER -->
+                <div class="form-group">
+
+                    <label for="gender">
+                        Gender
+                    </label>
+
+                    <div class="input-wrapper select-wrapper">
+
+                        <i class="fa-solid fa-venus-mars"></i>
+
+                        <select
+                            id="gender"
+                            name="gender"
+                        >
+
+                            <option value="">
+                                Select gender
+                            </option>
+
+                            <option value="Male">
+                                Male
+                            </option>
+
+                            <option value="Female">
+                                Female
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                            <option value="Prefer not to say">
+                                Prefer not to say
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <!-- ADDRESS -->
+                <div class="form-group full-width">
+
+                    <label for="address">
+                        Address
+                        <span>*</span>
+                    </label>
+
+                    <div class="textarea-wrapper">
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        <textarea
+                            id="address"
+                            name="address"
+                            rows="4"
+                            placeholder="Enter your complete address"
+                            autocomplete="street-address"
+                            required
+                        ></textarea>
+
+                    </div>
+
+                    <small
+                        class="error-message"
+                        id="addressError"
+                    ></small>
+
+                </div>
+
+                <!-- CITY -->
+                <div class="form-group">
+
+                    <label for="city">
+                        City
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-city"></i>
+
+                        <input
+                            type="text"
+                            id="city"
+                            name="city"
+                            placeholder="Enter your city"
+                            autocomplete="address-level2"
+                        >
+
+                    </div>
+
+                </div>
+
+                <!-- COUNTRY -->
+                <div class="form-group">
+
+                    <label for="country">
+                        Country
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-earth-americas"></i>
+
+                        <input
+                            type="text"
+                            id="country"
+                            name="country"
+                            placeholder="Enter your country"
+                            autocomplete="country-name"
+                        >
+
+                    </div>
+
+                </div>
+
+                <!-- ACTION BUTTONS -->
+                <div class="form-actions full-width">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="resetProfileButton"
+                    >
+                        <i class="fa-solid fa-rotate-left"></i>
+                        Reset Changes
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+                        <i class="fa-solid fa-floppy-disk"></i>
+                        Save Changes
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <!-- =========================
+         TOAST MESSAGE
+    ========================== -->
+    <div
+        class="toast-message"
+        id="toastMessage"
+        role="alert"
+        aria-live="polite"
+    ></div>
+
+    <!-- Footer -->
+    <footer class="profile-footer">
+
+        <p>
+            © 2026 Willuda Inn. All rights reserved.
+        </p>
+
+    </footer>
+
+    <!-- Profile JavaScript -->
+    <script src="assets/js/profile.js"></script>
+
+</body>
+
+</html>

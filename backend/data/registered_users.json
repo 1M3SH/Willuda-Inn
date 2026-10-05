@@ -1,0 +1,54 @@
+[
+  {
+    "id": 1,
+    "full_name": "Prabhath Akalanka",
+    "email": "admin@willudainn.com",
+    "password": "$2b$10$1t.oymF4zEPvodZfb01UG.Rjg3Ie7HouqD4zspslXrS4zqytfmdYq",
+    "role": "Administrator",
+    "status": "Active"
+  },
+  {
+    "id": 2,
+    "full_name": "Tharuka Prabathiya",
+    "email": "tharukaprabathiya833@gmail.com",
+    "password": "$2b$10$/8AqZ8O.QNbWI/rrxpIiDeoNjkOcYVt3hmiObuDZFyKDjMjq3LIEm",
+    "role": "Customer",
+    "status": "Active"
+  },
+  {
+    "id": 3,
+    "full_name": "Test User",
+    "email": "testuser@example.com",
+    "password": "$2b$10$ub3DkGYj176rI9FV3k4ZJek9bfoZxkiAk9PVcM6ipl2Vd5M9JTtua",
+    "role": "Customer",
+    "status": "Active",
+    "created_at": "2026-10-05T16:59:04.069Z"
+  },
+  {
+    "id": 4,
+    "full_name": "Tharuka Prabathiya Direct",
+    "email": "tharukaprabathiya_direct@gmail.com",
+    "password": "$2b$10$Bmy.6Gtu0Thu9/30JjrAx.jHBMsQpJjNZpOu701B3K3hDdE.ogSxC",
+    "role": "Customer",
+    "status": "Active",
+    "created_at": "2026-10-05T17:02:41.091Z"
+  },
+  {
+    "id": 5,
+    "full_name": "Test Encryption User 1791221901913",
+    "email": "test_encrypt_1791221901913@willudainn.com",
+    "password": "$2b$10$/EwS1.SaB3ZLATo8SAdrnOwkUb2mudkeXobJnaFwRvVkJEmFE7OJi",
+    "role": "Customer",
+    "status": "Active",
+    "created_at": "2026-10-05T17:38:21.998Z"
+  },
+  {
+    "id": 6,
+    "full_name": "imesh dananjaya",
+    "email": "imeshdananajaya@gmail.com",
+    "password": "$2b$10$qv5e.IBesxByaZyWn48sNeu6WWzm1HHqR9VsH6KgL73s5ajbMql7C",
+    "role": "Customer",
+    "status": "Active",
+    "created_at": "2026-10-05T17:50:44.717Z"
+  }
+]

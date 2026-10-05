@@ -1,0 +1,264 @@
+@media(max-width:768px){
+
+.container{
+
+width:90%;
+
+}
+
+nav{
+
+display:none;
+
+}
+
+.heroContent{
+
+width:90%;
+
+}
+
+.heroContent h1{
+
+font-size:48px;
+
+line-height:55px;
+
+}
+
+.heroContent p{
+
+width:100%;
+
+}
+
+.heroButtons{
+
+flex-direction:column;
+
+}
+
+}
+
+@media (max-width: 1000px) {
+    .booking-search-card {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+    }
+
+    .booking-divider {
+        display: none;
+    }
+
+    .search-room-btn {
+        grid-column: 1 / -1;
+        width: 100%;
+    }
+}
+
+@media (max-width: 650px) {
+    .booking-search-section {
+        margin-top: -35px;
+        padding: 0 16px;
+    }
+
+    .booking-search-card {
+        padding: 25px 20px;
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    .booking-field {
+        padding-bottom: 18px;
+        border-bottom: 1px solid #dfe3ec;
+    }
+
+    .booking-field:last-of-type {
+        border-bottom: none;
+    }
+
+    .search-room-btn {
+        min-height: 55px;
+    }
+}
+
+@media (max-width: 950px) {
+    .about-section {
+        padding-top: 110px;
+    }
+
+    .about-container {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+
+    .about-images {
+        width: min(650px, 100%);
+        margin: 0 auto;
+    }
+
+    .about-content {
+        width: min(650px, 100%);
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .about-section {
+        padding: 90px 16px 75px;
+    }
+
+    .about-images {
+        min-height: 450px;
+    }
+
+    .about-image-main {
+        width: 88%;
+        height: 390px;
+    }
+
+    .about-image-small {
+        width: 58%;
+        height: 210px;
+    }
+
+    .experience-box {
+        left: auto;
+        right: 0;
+        top: 35px;
+        width: 135px;
+        min-height: 105px;
+        padding: 14px;
+    }
+
+    .experience-number {
+        font-size: 38px;
+    }
+
+    .experience-text {
+        font-size: 10px;
+    }
+
+    .about-content h2 {
+        font-size: 40px;
+    }
+
+    .about-feature {
+        gap: 14px;
+    }
+
+    .feature-icon {
+        width: 46px;
+        height: 46px;
+    }
+
+    .about-button {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 1000px) {
+    .facilities-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .facility-card:last-child {
+        grid-column: 1 / -1;
+        width: min(570px, 100%);
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 650px) {
+    .facilities-section {
+        padding: 80px 16px;
+    }
+
+    .section-heading h2 {
+        font-size: 40px;
+    }
+
+    .facilities-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .facility-card:last-child {
+        grid-column: auto;
+        width: 100%;
+    }
+
+    .facility-image {
+        height: 220px;
+    }
+
+    .facility-footer {
+        align-items: flex-end;
+    }
+
+    .view-all-facilities {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 1000px) {
+    .why-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .testimonial-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .testimonial-card:last-child {
+        grid-column: 1 / -1;
+        width: min(570px, 100%);
+        margin: 0 auto;
+    }
+
+    .footer-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 650px) {
+    .why-section,
+    .testimonial-section {
+        padding: 80px 16px;
+    }
+
+    .why-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .testimonial-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .testimonial-card:last-child {
+        grid-column: auto;
+        width: 100%;
+    }
+
+    .testimonial-text {
+        min-height: auto;
+    }
+
+    .footer-container {
+        width: calc(100% - 32px);
+        grid-template-columns: 1fr;
+        gap: 38px;
+    }
+
+    .footer-bottom {
+        width: calc(100% - 32px);
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-bottom-links {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}

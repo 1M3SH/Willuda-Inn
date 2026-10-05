@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation - Willuda Inn</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <style>
+        body {
+            background-color: #F5F7FC;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .confirmation-page {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+        }
+        .confirmation-card {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            max-width: 650px;
+            width: 100%;
+            padding: 40px;
+            text-align: center;
+            border-top: 5px solid #E2B95B;
+        }
+        .success-icon-wrap {
+            width: 80px;
+            height: 80px;
+            background: rgba(226, 185, 91, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: #E2B95B;
+            font-size: 36px;
+        }
+        .confirmation-card h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 36px;
+            color: #0D1E38;
+            margin-bottom: 10px;
+        }
+        .confirmation-card p.subtitle {
+            color: #6c757d;
+            font-size: 15px;
+            margin-bottom: 30px;
+        }
+        .booking-details-box {
+            background: #F8F9FA;
+            border: 1px dashed #d1d5db;
+            border-radius: 8px;
+            padding: 24px;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eaeaea;
+            font-size: 14px;
+        }
+        .detail-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .detail-label {
+            color: #6c757d;
+            font-weight: 500;
+        }
+        .detail-value {
+            color: #0D1E38;
+            font-weight: 600;
+        }
+        .actions-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="confirmation-page">
+        <div class="confirmation-card">
+            <div class="success-icon-wrap">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h1>Reservation Confirmed!</h1>
+            <p class="subtitle">Thank you for choosing Willuda Inn. We have received your booking and look forward to welcoming you.</p>
+
+            <div class="booking-details-box">
+                <div class="detail-row">
+                    <span class="detail-label">Booking Reference:</span>
+                    <span class="detail-value" id="confirmRef">WIL-849201</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Guest Name:</span>
+                    <span class="detail-value" id="confirmGuest">Valued Guest</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Facility / Room:</span>
+                    <span class="detail-value" id="confirmFacility">Deluxe Ocean Suite</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Booking Status:</span>
+                    <span class="detail-value" style="color: #28a745;"><i class="fa-solid fa-circle-check"></i> Confirmed</span>
+                </div>
+            </div>
+
+            <div class="actions-group">
+                <a href="index.html" class="btn btn-primary"><i class="fa-solid fa-house"></i> Return to Home</a>
+                <a href="my-bookings.html" class="btn btn-outline" style="border: 1px solid #0D1E38; color: #0D1E38;"><i class="fa-solid fa-calendar-days"></i> View My Bookings</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const ref = urlParams.get("ref");
+            const stored = sessionStorage.getItem("last_confirmed_booking");
+            
+            if (ref) {
+                document.getElementById("confirmRef").textContent = ref;
+            }
+            if (stored) {
+                try {
+                    const data = JSON.parse(stored);
+                    if (data.bookingId) document.getElementById("confirmRef").textContent = data.bookingId;
+                    if (data.guestName) document.getElementById("confirmGuest").textContent = data.guestName;
+                    if (data.facilityName) document.getElementById("confirmFacility").textContent = data.facilityName;
+                } catch(e) {}
+            } else {
+                const latest = localStorage.getItem("willudaLatestBooking");
+                if (latest) {
+                    try {
+                        const data = JSON.parse(latest);
+                        if (data.bookingId) document.getElementById("confirmRef").textContent = data.bookingId;
+                        if (data.customer?.fullName) document.getElementById("confirmGuest").textContent = data.customer.fullName;
+                        if (data.facility) document.getElementById("confirmFacility").textContent = data.facility;
+                    } catch(e) {}
+                }
+            }
+        });
+    </script>
+</body>
+</html>

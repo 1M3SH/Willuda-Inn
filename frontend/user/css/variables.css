@@ -1,0 +1,41 @@
+:root {
+  /* Brand & Theme Colors */
+  --primary-color: #0d1e38;
+  --primary-dark: #07101f;
+  --accent-gold: #e2b95b;
+  --accent-gold-hover: #cfa344;
+  --text-dark: #1b263b;
+  --text-muted: #6c757d;
+  --text-light: #ffffff;
+  --bg-light: #f5f7fc;
+  --bg-white: #ffffff;
+  --bg-card: #ffffff;
+  --border-color: #e5e9f2;
+
+  /* Status Colors */
+  --color-success: #28a745;
+  --color-warning: #ffc107;
+  --color-danger: #dc3545;
+  --color-info: #17a2b8;
+
+  /* Typography */
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Layout & Spacing */
+  --container-max-width: 1200px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-pill: 50px;
+
+  /* Elevation & Shadows */
+  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --card-shadow-hover: 0 16px 40px rgba(0, 0, 0, 0.12);
+  --dropdown-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+
+  /* Animation & Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}

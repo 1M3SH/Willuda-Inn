@@ -4,7 +4,8 @@
    WILLUDA INN BACKEND SERVER
 ===================================================== */
 
-require("dotenv").config();
+const path = require("path");
+require("dotenv").config({ path: path.resolve(__dirname, ".env") });
 
 const express = require("express");
 const cors = require("cors");
@@ -145,6 +146,11 @@ app.use(
 );
 
 app.use(
+    "/api/products",
+    facilityRoutes
+);
+
+app.use(
     "/api/events",
     eventRoutes
 );
@@ -152,6 +158,16 @@ app.use(
 app.use(
     "/api/payments",
     paymentRoutes
+);
+
+app.use(
+    "/api/orders",
+    bookingRoutes
+);
+
+app.use(
+    "/api/users",
+    customerRoutes
 );
 
 /* =====================================================

@@ -18,4 +18,9 @@ router.post(
     authController.loginAdmin
 );
 
+router.post(
+    "/register",
+    authController.register
+);
+
 module.exports = router;

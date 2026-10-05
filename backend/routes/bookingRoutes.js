@@ -39,6 +39,16 @@ router.put(
     updateBooking
 );
 
+router.patch(
+    "/:id",
+    updateBooking
+);
+
+router.patch(
+    "/:id/status",
+    updateBooking
+);
+
 router.delete(
     "/:id",
     deleteBooking

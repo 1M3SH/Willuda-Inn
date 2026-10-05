@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Admin Dashboard | Willuda Inn</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="assets/css/admin-common.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="assets/css/admin-dashboard.css"
+    >
+</head>
+
+<body>
+
+    <div class="admin-layout">
+
+        <!-- SIDEBAR -->
+        <aside
+            class="admin-sidebar"
+            id="adminSidebar"
+        >
+
+            <div class="sidebar-brand">
+
+                <a href="admin-dashboard.html">
+
+                    <span class="brand-title">
+                        Willuda Admin
+                    </span>
+
+                    <span class="brand-subtitle">
+                        Management Portal
+                    </span>
+
+                </a>
+
+                <button
+                    type="button"
+                    class="sidebar-close-button"
+                    id="sidebarCloseButton"
+                    aria-label="Close sidebar"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+            <nav class="sidebar-navigation">
+
+                <a
+                    href="admin-dashboard.html"
+                    class="sidebar-link active"
+                >
+                    <i class="fa-solid fa-table-cells-large"></i>
+                    <span>Overview</span>
+                </a>
+
+                <a
+                    href="bookings.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span>Bookings</span>
+                </a>
+
+                <a
+                    href="facilities.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-bed"></i>
+                    <span>Facilities</span>
+                </a>
+
+                <a
+                    href="customers.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-users"></i>
+                    <span>Customers</span>
+                </a>
+
+                <a
+                    href="reports.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-chart-column"></i>
+                    <span>Reports</span>
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <div class="system-status">
+                    <span class="status-dot"></span>
+                    System Status: Active
+                </div>
+
+                <a
+                    href="settings.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                </a>
+
+                <a
+                    href="../index.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Exit Admin</span>
+                </a>
+
+                <div class="admin-user-card">
+
+                    <div class="admin-avatar">
+                        <span>AU</span>
+                    </div>
+
+                    <div>
+                        <strong>Admin User</strong>
+                        <small>Manager Role</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+        <!-- OVERLAY -->
+        <div
+            class="sidebar-overlay"
+            id="sidebarOverlay"
+        ></div>
+
+        <!-- MAIN -->
+        <main class="admin-main">
+
+            <!-- TOPBAR -->
+            <header class="admin-topbar">
+
+                <button
+                    type="button"
+                    class="sidebar-toggle-button"
+                    id="sidebarToggleButton"
+                    aria-label="Open sidebar"
+                >
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+                <div>
+
+                    <p class="welcome-label">
+                        Welcome back
+                    </p>
+
+                    <h1>
+                        Morning, Administrator
+                    </h1>
+
+                    <p class="topbar-description">
+                        Overview of Willuda Inn's current performance.
+                    </p>
+
+                </div>
+
+                <div class="topbar-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="exportReportButton"
+                    >
+                        <i class="fa-solid fa-download"></i>
+                        Export Report
+                    </button>
+
+                    <a
+                        href="bookings.html"
+                        class="primary-button"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        New Booking
+                    </a>
+
+                </div>
+
+            </header>
+
+            <!-- STATS -->
+            <section class="statistics-grid">
+
+                <article class="stat-card">
+
+                    <div class="stat-card-top">
+
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+
+                        <span class="positive-change">
+                            +12.5%
+                        </span>
+
+                    </div>
+
+                    <span class="stat-label">
+                        Total Bookings
+                    </span>
+
+                    <strong id="totalBookingsCount">
+                        0
+                    </strong>
+
+                </article>
+
+                <article class="stat-card">
+
+                    <div class="stat-card-top">
+
+                        <div class="stat-icon gold-icon">
+                            <i class="fa-solid fa-money-bill-wave"></i>
+                        </div>
+
+                        <span class="positive-change">
+                            +8.2%
+                        </span>
+
+                    </div>
+
+                    <span class="stat-label">
+                        Revenue
+                    </span>
+
+                    <strong id="totalRevenueCount">
+                        LKR 0
+                    </strong>
+
+                </article>
+
+                <article class="stat-card">
+
+                    <div class="stat-card-top">
+
+                        <div class="stat-icon blue-icon">
+                            <i class="fa-solid fa-bed"></i>
+                        </div>
+
+                        <span class="neutral-change">
+                            88%
+                        </span>
+
+                    </div>
+
+                    <span class="stat-label">
+                        Occupancy Rate
+                    </span>
+
+                    <strong id="occupancyRateCount">
+                        0%
+                    </strong>
+
+                </article>
+
+                <article class="stat-card">
+
+                    <div class="stat-card-top">
+
+                        <div class="stat-icon light-icon">
+                            <i class="fa-solid fa-user-plus"></i>
+                        </div>
+
+                        <span class="positive-change">
+                            +45
+                        </span>
+
+                    </div>
+
+                    <span class="stat-label">
+                        New Customers
+                    </span>
+
+                    <strong id="customerCount">
+                        0
+                    </strong>
+
+                </article>
+
+            </section>
+
+            <!-- DASHBOARD GRID -->
+            <section class="dashboard-grid">
+
+                <!-- UPCOMING CHECK-INS -->
+                <article class="dashboard-card checkins-card">
+
+                    <div class="card-heading">
+
+                        <h2>
+                            Upcoming Check-ins
+                        </h2>
+
+                        <a href="bookings.html">
+                            View All
+                        </a>
+
+                    </div>
+
+                    <div class="table-wrapper">
+
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th>Guest</th>
+                                    <th>Room Type</th>
+                                    <th>Stay Dates</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="recentBookingsBody"></tbody>
+
+                        </table>
+
+                    </div>
+
+                    <div
+                        class="empty-table-state"
+                        id="emptyRecentBookings"
+                        hidden
+                    >
+                        No bookings available.
+                    </div>
+
+                </article>
+
+                <!-- QUICK ACTIONS -->
+                <article class="dashboard-card quick-actions-card">
+
+                    <div class="card-heading">
+                        <h2>Quick Actions</h2>
+                    </div>
+
+                    <div class="quick-actions-grid">
+
+                        <a href="bookings.html">
+                            <i class="fa-solid fa-calendar-plus"></i>
+                            <span>Manage Bookings</span>
+                        </a>
+
+                        <a href="facilities.html">
+                            <i class="fa-solid fa-bed"></i>
+                            <span>Manage Facilities</span>
+                        </a>
+
+                        <a href="customers.html">
+                            <i class="fa-solid fa-user-group"></i>
+                            <span>View Customers</span>
+                        </a>
+
+                        <a href="reports.html">
+                            <i class="fa-solid fa-chart-line"></i>
+                            <span>View Reports</span>
+                        </a>
+
+                    </div>
+
+                </article>
+
+                <!-- ROOM AVAILABILITY -->
+                <article class="dashboard-card availability-card">
+
+                    <div class="card-heading">
+
+                        <div>
+                            <span class="card-label">
+                                Live Overview
+                            </span>
+
+                            <h2>Room Availability</h2>
+                        </div>
+
+                    </div>
+
+                    <div class="availability-bars">
+
+                        <div class="availability-item">
+
+                            <div class="availability-meta">
+                                <span>Deluxe Rooms</span>
+                                <strong>82%</strong>
+                            </div>
+
+                            <div class="availability-track">
+                                <span style="width: 82%"></span>
+                            </div>
+
+                        </div>
+
+                        <div class="availability-item">
+
+                            <div class="availability-meta">
+                                <span>Family Suites</span>
+                                <strong>68%</strong>
+                            </div>
+
+                            <div class="availability-track">
+                                <span style="width: 68%"></span>
+                            </div>
+
+                        </div>
+
+                        <div class="availability-item">
+
+                            <div class="availability-meta">
+                                <span>Event Halls</span>
+                                <strong>75%</strong>
+                            </div>
+
+                            <div class="availability-track">
+                                <span style="width: 75%"></span>
+                            </div>
+
+                        </div>
+
+                        <div class="availability-item">
+
+                            <div class="availability-meta">
+                                <span>Conference Spaces</span>
+                                <strong>57%</strong>
+                            </div>
+
+                            <div class="availability-track">
+                                <span style="width: 57%"></span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+                <!-- RECENT ACTIVITY -->
+                <article class="dashboard-card activity-card">
+
+                    <div class="card-heading">
+
+                        <h2>
+                            Recent Activity
+                        </h2>
+
+                    </div>
+
+                    <div
+                        class="activity-list"
+                        id="recentActivityList"
+                    ></div>
+
+                </article>
+
+            </section>
+
+            <footer class="admin-footer">
+
+                <p>
+                    © 2026 Willuda Inn Management Console.
+                </p>
+
+                <div>
+                    <span>
+                        <i class="fa-solid fa-circle"></i>
+                        Database API Connected
+                    </span>
+
+                    <span>
+                        <i class="fa-solid fa-circle"></i>
+                        Live Booking Updates
+                    </span>
+                </div>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+    <div
+        class="admin-toast"
+        id="adminToast"
+        role="alert"
+        aria-live="polite"
+    ></div>
+
+   <!-- Admin authentication protection -->
+<script src="assets/js/admin-auth.js"></script>
+
+<!-- Dashboard functions -->
+<script src="assets/js/admin-dashboard.js"></script>
+
+</body>
+</html>
+
+</body>
+
+</html>

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Notifications | Willuda Inn</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Cormorant+Garamond:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <!-- Page CSS -->
+    <link
+        rel="stylesheet"
+        href="assets/css/notifications.css"
+    >
+</head>
+
+<body>
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+    <header class="notifications-header">
+
+        <div class="header-content">
+
+            <a
+                href="dashboard.html"
+                class="back-link"
+            >
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to Dashboard
+            </a>
+
+            <div class="header-text">
+
+                <span class="page-label">
+                    Customer Account
+                </span>
+
+                <h1>Notifications</h1>
+
+                <p>
+                    View booking updates, payment alerts and important messages
+                    from Willuda Inn.
+                </p>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+    <main class="notifications-container">
+
+        <!-- Sidebar -->
+        <aside class="account-sidebar">
+
+            <div class="user-summary">
+
+                <div class="user-avatar">
+
+                    <img
+                        src=""
+                        alt="Profile picture"
+                        id="sidebarProfileImage"
+                        hidden
+                    >
+
+                    <span id="sidebarInitials">
+                        WI
+                    </span>
+
+                </div>
+
+                <h2 id="sidebarName">
+                    Customer
+                </h2>
+
+                <p id="sidebarEmail"></p>
+
+            </div>
+
+            <nav class="account-navigation">
+
+                <a
+                    href="profile.html"
+                    class="navigation-link"
+                >
+                    <i class="fa-solid fa-user"></i>
+                    Personal Information
+                </a>
+
+                <a
+                    href="change-password.html"
+                    class="navigation-link"
+                >
+                    <i class="fa-solid fa-lock"></i>
+                    Change Password
+                </a>
+
+                <a
+                    href="my-bookings.html"
+                    class="navigation-link"
+                >
+                    <i class="fa-solid fa-calendar-days"></i>
+                    My Bookings
+                </a>
+
+                <a
+                    href="notifications.html"
+                    class="navigation-link active"
+                >
+                    <i class="fa-solid fa-bell"></i>
+                    Notifications
+                </a>
+
+            </nav>
+
+            <div class="notification-summary-card">
+
+                <i class="fa-solid fa-envelope-open-text"></i>
+
+                <div>
+                    <span>Unread Messages</span>
+
+                    <strong id="sidebarUnreadCount">
+                        0
+                    </strong>
+                </div>
+
+            </div>
+
+        </aside>
+
+        <!-- Notifications Content -->
+        <section class="notifications-content">
+
+            <!-- Heading -->
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        Message Center
+                    </span>
+
+                    <h2>Your Notifications</h2>
+
+                    <p>
+                        Manage all booking, payment, promotion and system
+                        notifications.
+                    </p>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="mark-all-button"
+                    id="markAllReadButton"
+                >
+                    <i class="fa-solid fa-check-double"></i>
+                    Mark All as Read
+                </button>
+
+            </div>
+
+            <!-- Statistics -->
+            <div class="notification-statistics">
+
+                <article class="stat-card">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-bell"></i>
+                    </div>
+
+                    <div>
+                        <span>Total</span>
+                        <strong id="totalNotifications">0</strong>
+                    </div>
+
+                </article>
+
+                <article class="stat-card">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+
+                    <div>
+                        <span>Unread</span>
+                        <strong id="unreadNotifications">0</strong>
+                    </div>
+
+                </article>
+
+                <article class="stat-card">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+
+                    <div>
+                        <span>Booking</span>
+                        <strong id="bookingNotifications">0</strong>
+                    </div>
+
+                </article>
+
+                <article class="stat-card">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-credit-card"></i>
+                    </div>
+
+                    <div>
+                        <span>Payment</span>
+                        <strong id="paymentNotifications">0</strong>
+                    </div>
+
+                </article>
+
+            </div>
+
+            <!-- Filters -->
+            <div class="notification-filters">
+
+                <div class="search-wrapper">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="search"
+                        id="notificationSearch"
+                        placeholder="Search notifications..."
+                        aria-label="Search notifications"
+                    >
+
+                </div>
+
+                <select
+                    id="notificationTypeFilter"
+                    aria-label="Filter by notification type"
+                >
+                    <option value="all">
+                        All Types
+                    </option>
+
+                    <option value="Booking">
+                        Booking
+                    </option>
+
+                    <option value="Payment">
+                        Payment
+                    </option>
+
+                    <option value="Promotion">
+                        Promotion
+                    </option>
+
+                    <option value="System">
+                        System
+                    </option>
+                </select>
+
+                <select
+                    id="notificationStatusFilter"
+                    aria-label="Filter by notification status"
+                >
+                    <option value="all">
+                        All Statuses
+                    </option>
+
+                    <option value="unread">
+                        Unread
+                    </option>
+
+                    <option value="read">
+                        Read
+                    </option>
+                </select>
+
+                <button
+                    type="button"
+                    class="clear-filter-button"
+                    id="clearNotificationFilters"
+                >
+                    <i class="fa-solid fa-rotate-left"></i>
+                    Clear
+                </button>
+
+            </div>
+
+            <!-- Notification List -->
+            <div
+                class="notification-list"
+                id="notificationList"
+            ></div>
+
+            <!-- Empty State -->
+            <div
+                class="empty-notifications"
+                id="emptyNotifications"
+                hidden
+            >
+
+                <div class="empty-icon">
+                    <i class="fa-regular fa-bell-slash"></i>
+                </div>
+
+                <h3>No Notifications Found</h3>
+
+                <p id="emptyNotificationMessage">
+                    You do not have any notifications at the moment.
+                </p>
+
+                <a
+                    href="booking.html"
+                    class="booking-link"
+                >
+                    <i class="fa-solid fa-calendar-plus"></i>
+                    Make a Booking
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- =========================
+         DELETE CONFIRMATION MODAL
+    ========================== -->
+    <div
+        class="modal-overlay"
+        id="deleteNotificationModal"
+        hidden
+    >
+
+        <div
+            class="modal-card"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="deleteModalTitle"
+        >
+
+            <button
+                type="button"
+                class="modal-close-button"
+                id="closeDeleteModal"
+                aria-label="Close modal"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="modal-icon">
+                <i class="fa-solid fa-trash-can"></i>
+            </div>
+
+            <h2 id="deleteModalTitle">
+                Delete Notification?
+            </h2>
+
+            <p>
+                This notification will be permanently removed from your list.
+            </p>
+
+            <strong id="deleteNotificationTitle">
+                Notification
+            </strong>
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    id="keepNotificationButton"
+                >
+                    Keep Notification
+                </button>
+
+                <button
+                    type="button"
+                    class="danger-button"
+                    id="confirmDeleteNotification"
+                >
+                    <i class="fa-solid fa-trash"></i>
+                    Delete
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Toast Message -->
+    <div
+        class="toast-message"
+        id="toastMessage"
+        role="alert"
+        aria-live="polite"
+    ></div>
+
+    <!-- Footer -->
+    <footer class="notifications-footer">
+
+        <p>
+            © 2026 Willuda Inn. All rights reserved.
+        </p>
+
+    </footer>
+
+    <!-- Page JavaScript -->
+    <script src="assets/js/notifications.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,118 @@
+/* Component Stylesheet */
+@import url('variables.css');
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 26px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: var(--radius-sm, 4px);
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition-normal, 0.3s ease);
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+  background-color: var(--accent-gold, #e2b95b);
+  color: #111111;
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-gold-hover, #cfa344);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(226, 185, 91, 0.35);
+}
+
+.btn-outline {
+  border-color: var(--accent-gold, #e2b95b);
+  color: var(--accent-gold, #e2b95b);
+  background: transparent;
+}
+
+.btn-outline:hover {
+  background-color: var(--accent-gold, #e2b95b);
+  color: #111111;
+}
+
+.btn-dark {
+  background-color: var(--primary-color, #0d1e38);
+  color: #ffffff;
+}
+
+.btn-dark:hover {
+  background-color: var(--accent-gold, #e2b95b);
+  color: #111111;
+}
+
+/* Cards */
+.card {
+  background: var(--bg-card, #ffffff);
+  border-radius: var(--radius-md, 8px);
+  overflow: hidden;
+  box-shadow: var(--card-shadow, 0 10px 30px rgba(0, 0, 0, 0.08));
+  transition: var(--transition-normal, 0.3s ease);
+  border: 1px solid var(--border-color, #e5e9f2);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--card-shadow-hover, 0 16px 40px rgba(0, 0, 0, 0.12));
+}
+
+.card-body {
+  padding: 24px;
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: var(--radius-pill, 50px);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-success {
+  background: rgba(40, 167, 69, 0.12);
+  color: var(--color-success, #28a745);
+}
+
+.badge-warning {
+  background: rgba(255, 193, 7, 0.15);
+  color: #b38600;
+}
+
+.badge-danger {
+  background: rgba(220, 53, 69, 0.12);
+  color: var(--color-danger, #dc3545);
+}
+
+/* Alerts */
+.alert {
+  padding: 16px 20px;
+  border-radius: var(--radius-sm, 4px);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.alert-info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border: 1px solid #bee5eb;
+}

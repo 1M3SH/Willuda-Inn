@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Customer Management | Willuda Inn</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="assets/css/admin-common.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="assets/css/admin-customers.css"
+    >
+</head>
+
+<body>
+
+    <div class="admin-layout">
+
+        <!-- SIDEBAR -->
+        <aside
+            class="admin-sidebar"
+            id="adminSidebar"
+        >
+
+            <div class="sidebar-brand">
+
+                <a href="admin-dashboard.html">
+
+                    <span class="brand-title">
+                        Willuda Admin
+                    </span>
+
+                    <span class="brand-subtitle">
+                        Management Portal
+                    </span>
+
+                </a>
+
+                <button
+                    type="button"
+                    class="sidebar-close-button"
+                    id="sidebarCloseButton"
+                    aria-label="Close sidebar"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+            <nav class="sidebar-navigation">
+
+                <a
+                    href="admin-dashboard.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-table-cells-large"></i>
+                    <span>Overview</span>
+                </a>
+
+                <a
+                    href="bookings.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span>Bookings</span>
+                </a>
+
+                <a
+                    href="facilities.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-bed"></i>
+                    <span>Facilities</span>
+                </a>
+
+                <a
+                    href="customers.html"
+                    class="sidebar-link active"
+                >
+                    <i class="fa-solid fa-users"></i>
+                    <span>Customers</span>
+                </a>
+
+                <a
+                    href="reports.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-chart-column"></i>
+                    <span>Reports</span>
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <div class="system-status">
+                    <span class="status-dot"></span>
+                    System Status: Active
+                </div>
+
+                <a
+                    href="settings.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                </a>
+
+                <a
+                    href="../index.html"
+                    class="sidebar-link"
+                >
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Exit Admin</span>
+                </a>
+
+                <div class="admin-user-card">
+
+                    <div class="admin-avatar">
+                        <span>AU</span>
+                    </div>
+
+                    <div>
+                        <strong>Admin User</strong>
+                        <small>Manager Role</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+        <div
+            class="sidebar-overlay"
+            id="sidebarOverlay"
+        ></div>
+
+        <!-- MAIN -->
+        <main class="admin-main">
+
+            <header class="customers-topbar">
+
+                <div class="topbar-left">
+
+                    <button
+                        type="button"
+                        class="sidebar-toggle-button"
+                        id="sidebarToggleButton"
+                        aria-label="Open sidebar"
+                    >
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+
+                    <div>
+
+                        <span class="page-label">
+                            Customer Operations
+                        </span>
+
+                        <h1>Customer Management</h1>
+
+                        <p>
+                            View customer profiles, booking activity and account
+                            status.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    id="exportCustomersButton"
+                >
+                    <i class="fa-solid fa-download"></i>
+                    Export Customers
+                </button>
+
+            </header>
+
+            <!-- STATISTICS -->
+            <section class="customer-statistics">
+
+                <article class="customer-stat-card">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+
+                    <div>
+                        <span>Total Customers</span>
+                        <strong id="totalCustomersCount">0</strong>
+                    </div>
+
+                </article>
+
+                <article class="customer-stat-card">
+
+                    <div class="stat-icon active-icon">
+                        <i class="fa-solid fa-user-check"></i>
+                    </div>
+
+                    <div>
+                        <span>Active Customers</span>
+                        <strong id="activeCustomersCount">0</strong>
+                    </div>
+
+                </article>
+
+                <article class="customer-stat-card">
+
+                    <div class="stat-icon blocked-icon">
+                        <i class="fa-solid fa-user-lock"></i>
+                    </div>
+
+                    <div>
+                        <span>Blocked Customers</span>
+                        <strong id="blockedCustomersCount">0</strong>
+                    </div>
+
+                </article>
+
+                <article class="customer-stat-card">
+
+                    <div class="stat-icon booking-icon">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+
+                    <div>
+                        <span>Customers With Bookings</span>
+                        <strong id="customersWithBookingsCount">0</strong>
+                    </div>
+
+                </article>
+
+            </section>
+
+            <!-- CUSTOMER PANEL -->
+            <section class="customers-panel">
+
+                <div class="customer-filter-toolbar">
+
+                    <div class="search-box">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            type="search"
+                            id="customerSearch"
+                            placeholder="Search by name, email or phone..."
+                            aria-label="Search customers"
+                        >
+
+                    </div>
+
+                    <select
+                        id="customerStatusFilter"
+                        aria-label="Filter by customer status"
+                    >
+                        <option value="all">
+                            All Statuses
+                        </option>
+
+                        <option value="Active">
+                            Active
+                        </option>
+
+                        <option value="Blocked">
+                            Blocked
+                        </option>
+                    </select>
+
+                    <button
+                        type="button"
+                        class="clear-filter-button"
+                        id="clearCustomerFilters"
+                    >
+                        <i class="fa-solid fa-rotate-left"></i>
+                        Clear
+                    </button>
+
+                </div>
+
+                <div class="table-heading">
+
+                    <div>
+
+                        <h2>Registered Customers</h2>
+
+                        <p>
+                            Showing
+                            <strong id="customerResultCount">0</strong>
+                            customer records
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="table-wrapper">
+
+                    <table class="customer-table">
+
+                        <thead>
+
+                            <tr>
+                                <th>Customer</th>
+                                <th>Phone</th>
+                                <th>Bookings</th>
+                                <th>Total Spent</th>
+                                <th>Status</th>
+                                <th>Joined</th>
+                                <th>Actions</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="customerTableBody"></tbody>
+
+                    </table>
+
+                </div>
+
+                <div
+                    class="empty-customers"
+                    id="emptyCustomers"
+                    hidden
+                >
+
+                    <div class="empty-icon">
+                        <i class="fa-solid fa-user-slash"></i>
+                    </div>
+
+                    <h3>No Customers Found</h3>
+
+                    <p id="emptyCustomerMessage">
+                        No customer records are currently available.
+                    </p>
+
+                </div>
+
+            </section>
+
+            <footer class="admin-footer">
+
+                <p>
+                    © 2026 Willuda Inn Management Console.
+                </p>
+
+                <div>
+
+                    <span>
+                        <i class="fa-solid fa-circle"></i>
+                        Customer Data Synced
+                    </span>
+
+                    <span>
+                        <i class="fa-solid fa-circle"></i>
+                        Frontend Phase
+                    </span>
+
+                </div>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+    <!-- CUSTOMER DETAILS MODAL -->
+    <div
+        class="modal-overlay"
+        id="customerDetailsModal"
+        hidden
+    >
+
+        <div
+            class="customer-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="customerModalTitle"
+        >
+
+            <button
+                type="button"
+                class="modal-close-button"
+                id="closeCustomerModal"
+                aria-label="Close customer details"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="customer-modal-header">
+
+                <div
+                    class="modal-avatar"
+                    id="modalCustomerInitials"
+                >
+                    GU
+                </div>
+
+                <div>
+
+                    <span class="modal-label">
+                        Customer Profile
+                    </span>
+
+                    <h2 id="customerModalTitle">
+                        Customer Name
+                    </h2>
+
+                    <span
+                        class="modal-status"
+                        id="modalCustomerStatus"
+                    >
+                        Active
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="customer-detail-grid">
+
+                <div>
+                    <span>Email Address</span>
+                    <strong id="modalCustomerEmail">-</strong>
+                </div>
+
+                <div>
+                    <span>Phone Number</span>
+                    <strong id="modalCustomerPhone">-</strong>
+                </div>
+
+                <div>
+                    <span>Address</span>
+                    <strong id="modalCustomerAddress">-</strong>
+                </div>
+
+                <div>
+                    <span>City</span>
+                    <strong id="modalCustomerCity">-</strong>
+                </div>
+
+                <div>
+                    <span>Country</span>
+                    <strong id="modalCustomerCountry">-</strong>
+                </div>
+
+                <div>
+                    <span>Joined Date</span>
+                    <strong id="modalCustomerJoinedDate">-</strong>
+                </div>
+
+                <div>
+                    <span>Total Bookings</span>
+                    <strong id="modalCustomerBookings">0</strong>
+                </div>
+
+                <div>
+                    <span>Total Spent</span>
+                    <strong id="modalCustomerSpent">LKR 0</strong>
+                </div>
+
+            </div>
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="status-action-button block-action"
+                    id="toggleCustomerStatusButton"
+                >
+                    <i class="fa-solid fa-user-lock"></i>
+                    Block Customer
+                </button>
+
+                <button
+                    type="button"
+                    class="status-action-button delete-action"
+                    id="deleteCustomerButton"
+                >
+                    <i class="fa-solid fa-trash"></i>
+                    Delete Customer
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div
+        class="admin-toast"
+        id="adminToast"
+        role="alert"
+        aria-live="polite"
+    ></div>
+
+   <!-- Admin authentication protection -->
+<script src="assets/js/admin-auth.js"></script>
+
+<!-- Customer management functions -->
+<script src="assets/js/admin-customers.js"></script>
+
+</body>
+</html>
+
+</body>
+
+</html>

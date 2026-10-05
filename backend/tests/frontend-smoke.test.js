@@ -12,7 +12,15 @@ function pagesIn(folder) {
 }
 
 test("every public and admin HTML page has a title and only local assets that exist", () => {
-    const pages = [...pagesIn(root), ...pagesIn(path.join(root, "admin"))];
+    const userFolder = path.join(root, "frontend", "user");
+    const adminFolder = path.join(root, "frontend", "admin");
+    const legacyAdminFolder = path.join(root, "admin");
+    const pages = [
+        ...pagesIn(root),
+        ...(fs.existsSync(userFolder) ? pagesIn(userFolder) : []),
+        ...(fs.existsSync(adminFolder) ? pagesIn(adminFolder) : []),
+        ...(fs.existsSync(legacyAdminFolder) ? pagesIn(legacyAdminFolder) : [])
+    ];
     const failures = [];
     assert.ok(pages.length > 0);
     for (const page of pages) {
