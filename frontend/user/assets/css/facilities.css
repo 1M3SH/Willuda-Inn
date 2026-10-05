@@ -419,8 +419,17 @@ a {
         grid-template-columns: 1fr;
     }
 
+    .main-navigation {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
     .navigation-links {
-        display: none;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
     }
 
     .hero-content h1 {

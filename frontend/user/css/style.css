@@ -49,65 +49,74 @@ padding:25px 0;
 }
 
 .logo{
-
 font-family:'Cormorant Garamond',serif;
-
 font-size:34px;
-
 font-weight:bold;
-
 color:white;
+text-decoration:none;
+display:inline-flex;
+align-items:center;
+transition:.3s;
+}
 
+.logo span{
+color:#E2B95B;
+margin-left:4px;
+}
+
+.logo:hover{
+color:#E2B95B;
+}
+
+.nav-toggle{
+display:none;
+background:transparent;
+border:none;
+color:#ffffff;
+font-size:24px;
+cursor:pointer;
+padding:6px;
+transition:.3s;
+}
+
+.nav-toggle:hover{
+color:#E2B95B;
 }
 
 nav{
-
 display:flex;
-
 gap:35px;
-
+align-items:center;
 }
 
 nav a{
-
 text-decoration:none;
-
 color:white;
-
 font-size:15px;
-
 font-weight:500;
-
 transition:.3s;
-
 }
 
-nav a:hover{
-
+nav a:hover,
+nav a.active{
 color:#E2B95B;
+}
 
+nav .mobile-book-btn{
+display:none;
 }
 
 .bookBtn{
-
 background:#111;
-
 color:white;
-
 padding:13px 28px;
-
 text-decoration:none;
-
 border-radius:5px;
-
 font-weight:600;
-
 transition:.3s;
-
 }
 
 .bookBtn:hover{
-
 background:#E2B95B;
-
+color:#111;
 }

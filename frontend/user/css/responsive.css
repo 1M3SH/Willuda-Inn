@@ -1,41 +1,89 @@
 @media(max-width:768px){
 
 .container{
+width:92%;
+position:relative;
+}
 
-width:90%;
+.nav-toggle{
+display:block;
+}
 
+.bookBtn{
+display:none;
 }
 
 nav{
-
 display:none;
+position:absolute;
+top:calc(100% + 15px);
+left:0;
+width:100%;
+background:rgba(13, 30, 56, 0.98);
+backdrop-filter:blur(14px);
+-webkit-backdrop-filter:blur(14px);
+border-radius:12px;
+box-shadow:0 15px 35px rgba(0,0,0,0.45);
+border:1px solid rgba(226, 185, 91, 0.25);
+flex-direction:column;
+gap:0;
+padding:12px 0;
+z-index:1000;
+}
 
+nav.open{
+display:flex;
+animation:navFadeIn .25s ease forwards;
+}
+
+nav a{
+padding:14px 22px;
+display:block;
+font-size:15px;
+border-bottom:1px solid rgba(255,255,255,0.06);
+}
+
+nav a:last-child{
+border-bottom:none;
+}
+
+nav .mobile-book-btn{
+display:block;
+margin:12px 18px 6px;
+background:#E2B95B;
+color:#07101F !important;
+font-weight:600;
+text-align:center;
+border-radius:6px;
+padding:12px 18px;
+}
+
+@keyframes navFadeIn {
+from {
+opacity:0;
+transform:translateY(-8px);
+}
+to {
+opacity:1;
+transform:translateY(0);
+}
 }
 
 .heroContent{
-
 width:90%;
-
 }
 
 .heroContent h1{
-
 font-size:48px;
-
 line-height:55px;
-
 }
 
 .heroContent p{
-
 width:100%;
-
 }
 
 .heroButtons{
-
 flex-direction:column;
-
 }
 
 }
