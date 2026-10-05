@@ -1,0 +1,24 @@
+{
+  "name": "willuda-inn",
+  "version": "1.0.0",
+  "description": "Willuda Inn - Luxury Hotel & Resort Management System",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "node backend/server.js",
+    "build": "npm --prefix backend install",
+    "postinstall": "npm --prefix backend install",
+    "test": "npm.cmd --prefix backend test || npm --prefix backend test"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "hotel-management",
+    "reservation-system",
+    "railway",
+    "postgresql"
+  ],
+  "author": "Willuda Inn",
+  "license": "ISC"
+}
