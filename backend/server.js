@@ -51,9 +51,13 @@ const PORT =
    MIDDLEWARE
 ===================================================== */
 
+const allowedOrigins = process.env.CLIENT_URL
+    ? process.env.CLIENT_URL.split(",").map((url) => url.trim().replace(/\/+$/, ""))
+    : true;
+
 app.use(
     cors({
-        origin: true,
+        origin: allowedOrigins,
         credentials: true
     })
 );
@@ -218,34 +222,14 @@ app.use(
 ===================================================== */
 
 if (require.main === module) {
-    app.listen(
-        PORT,
-        function () {
-        console.log(
-            "======================================"
-        );
-
-        console.log(
-            `Willuda Inn API running on http://localhost:${PORT}`
-        );
-
-        console.log(
-            `Health check: http://localhost:${PORT}/api/health`
-        );
-
-        console.log(
-            `Events API: http://localhost:${PORT}/api/events`
-        );
-
-        console.log(
-            `Payments API: http://localhost:${PORT}/api/payments`
-        );
-
-        console.log(
-            "======================================"
-        );
-        }
-    );
+    app.listen(PORT, "0.0.0.0", function () {
+        console.log("======================================");
+        console.log(`Willuda Inn API running on port ${PORT}`);
+        console.log(`Health check: /api/health`);
+        console.log(`Events API: /api/events`);
+        console.log(`Payments API: /api/payments`);
+        console.log("======================================");
+    });
 }
 
 module.exports = app;
